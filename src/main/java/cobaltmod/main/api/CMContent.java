@@ -147,6 +147,7 @@ public enum CMContent {
 	
 	
 	public static Potion potion_cobalt_resistance;
+	public static Potion potion_cobalt_confusion;
 	
 	// USE ONLY WHEN IC2 IS INSTALLED
 	public static Item cobaltdust;

@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import cobaltmod.entity.EntityBlueBuddy;
 import cobaltmod.entity.EntityBlueSlime;
 import cobaltmod.entity.EntityCobaltGuardian;
@@ -24,6 +25,7 @@ import cobaltmod.entity.TileEntityCobexChest;
 import cobaltmod.entity.TileEntityLockedCobaltChest;
 import cobaltmod.entity.TileEntityPodium;
 import cobaltmod.entity.TileEntityRitualStone;
+import cobaltmod.gui.GuiCobaltConfusion;
 import cobaltmod.handler.event.CobaltKeyHandler;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.RenderAltar;
@@ -87,6 +89,7 @@ public class ClientProxyCobalt extends CommonProxyCobalt
 		
 		MinecraftForgeClient.registerItemRenderer(CMContent.scroll, (IItemRenderer) new RenderItemScroll());
 		FMLCommonHandler.instance().bus().register(new CobaltKeyHandler());
+		MinecraftForge.EVENT_BUS.register(new GuiCobaltConfusion(Minecraft.getMinecraft()));
 	}
 	@Override
 	public EntityPlayer getPlayerEntity(MessageContext ctx) {

@@ -165,7 +165,7 @@ public class CMMain {
 		biomeswampid = config.get("BiomeId", "Deep Swamp", 52).getInt();
 		biometallid = config.get("BiomeId", "Tall Forest", 53).getInt();
 		biometallid = config.get("BiomeId", "Highlands", 54).getInt();
-		
+
 		config.get("BiomeId", "Blue Hills", 50).comment = "Change the BiomesIds here if it conflicts with others.";
 
 		config.save();

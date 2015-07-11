@@ -32,7 +32,7 @@ public BiomeGenCobaltTall(int par1)
 	this.theBiomeDecorator.mushroomsPerChunk = 0;
 	}
 
-	protected static final BiomeGenBaseCobalt.Height height_Default = new BiomeGenBaseCobalt.Height(0.2F, 0.5F);
+	protected static final BiomeGenBaseCobalt.Height height_Default = new BiomeGenBaseCobalt.Height(0.5F, 0.5F);
 	
 	public WorldGenerator getRandomWorldGenForGrass(Random p_76730_1_)
     {

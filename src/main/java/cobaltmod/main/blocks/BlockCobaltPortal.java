@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.Direction;
@@ -29,6 +30,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockCobaltPortal extends BlockPortal {
 	public static final int[][] field_150001_a = new int[][] { new int[0], { 3, 1 }, { 2, 0 } };
 
+	// private int teleportCooldown = getCoolDown();
+
 	public BlockCobaltPortal() {
 		super();
 		this.setTickRandomly(true);
@@ -40,7 +43,18 @@ public class BlockCobaltPortal extends BlockPortal {
 	 * Ticks the block if it's been scheduled
 	 */
 	public void updateTick(World world, int x, int y, int z, Random random) {
+		// System.out.println(thePlayer.getEntityData().setInteger("TpTime",
+		// getCoolDown()););
+		// if (this.teleportCooldown < 0) {
+		// this.teleportCooldown = getCoolDown();
+		// }
+
 		super.updateTick(world, x, y, z, random);
+
+	}
+
+	public static int getCoolDown() {
+		return 600;
 	}
 
 	/**
@@ -179,21 +193,50 @@ public class BlockCobaltPortal extends BlockPortal {
 	public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity entity) {
 		if ((entity.ridingEntity == null) && (entity.riddenByEntity == null) && ((entity instanceof EntityPlayerMP))) {
 			EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
+
+			thePlayer.addPotionEffect(new PotionEffect(CMContent.potion_cobalt_confusion.id, (int) (0.5 * 20), 1));
+			// thePlayer.addPotionEffect(new PotionEffect(Potion.confusion.id,
+			// (int)(0.5 * 20), 10));
+
+			if (thePlayer.timeUntilPortal == 0) {
+				if (thePlayer.getEntityData().getInteger("TpTime") > 0) {
+					thePlayer.getEntityData().setInteger("TpTime", thePlayer.getEntityData().getInteger("TpTime") - 1);
+					System.out.println(thePlayer.getDisplayName() + ": " + thePlayer.getEntityData().getInteger("TpTime"));
+				} else {
+					thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
+				}
+			}
+
 			if (thePlayer.timeUntilPortal > 0) {
-				thePlayer.timeUntilPortal = 10;
-			} else if (thePlayer.dimension != CMMain.cobaltdimension) {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, CMMain.cobaltdimension,
-						new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(CMMain.cobaltdimension)));
+				thePlayer.timeUntilPortal = thePlayer.getPortalCooldown();
+
 			} else {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0,
-						new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(0)));
+
+				if (thePlayer.getEntityData().getInteger("TpTime") <= 0) {
+					if (entity instanceof EntityPlayer) {
+
+						EntityPlayer entityplayer = (EntityPlayer) entity;
+						entityplayer.addStat(AchievementHandler.cobaltachiev14, 1);
+
+						if (thePlayer.dimension != CMMain.cobaltdimension) {
+
+							thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, CMMain.cobaltdimension,
+									new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(CMMain.cobaltdimension)));
+							thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
+							thePlayer.timeUntilPortal = 10;
+						} else {
+
+							thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0,
+									new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(0)));
+							thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
+							thePlayer.timeUntilPortal = 10;
+						}
+
+					}
+				}
+
 			}
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer entityplayer = (EntityPlayer) entity;
-				entityplayer.addStat(AchievementHandler.cobaltachiev14, 1);
-			}
+
 		}
 	}
 

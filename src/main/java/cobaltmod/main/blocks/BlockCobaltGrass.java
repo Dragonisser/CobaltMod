@@ -75,12 +75,12 @@ public class BlockCobaltGrass extends Block implements IGrowable {
 				par1World.setBlock(par2, par3, par4, CMContent.cobaltdirt);
 			} else if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 5) {
 				for (int l = 0; l < 5; ++l) {
-					int i1 = par2 + par5Random.nextInt(3) - 1;
-					int j1 = par3 + par5Random.nextInt(5) - 3;
-					int k1 = par4 + par5Random.nextInt(3) - 1;
+					// int i1 = par2 + par5Random.nextInt(3) - 1;
+					// int j1 = par3 + par5Random.nextInt(5) - 3;
+					// int k1 = par4 + par5Random.nextInt(3) - 1;
 
-					Block spreadable = par1World.getBlock(i1, j1, k1);
-					Block below = par1World.getBlock(i1, par3 - 1, i1);
+					// Block spreadable = par1World.getBlock(i1, j1, k1);
+					// Block below = par1World.getBlock(i1, par3 - 1, i1);
 
 					// if (CMApiReplace.map.containsKey(spreadable) &&
 					// par1World.getBlockLightValue(i1, par3 + 1, k1) >= 4
