@@ -17,7 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cobaltmod.entity.TileEntityCobaltFurnace;
+import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;

@@ -2,7 +2,7 @@ package cobaltmod.main.blocks;
 
 import java.util.Random;
 
-import cobaltmod.entity.TileEntityCorruptedStoneFurnace;
+import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;

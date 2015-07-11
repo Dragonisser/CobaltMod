@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cobaltmod.entity.ModelPodium;
-import cobaltmod.entity.TileEntityPodium;
+import cobaltmod.entity.tileentity.TileEntityPodium;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

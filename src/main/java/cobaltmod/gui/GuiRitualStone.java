@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import cobaltmod.entity.TileEntityRitualStone;
+import cobaltmod.entity.tileentity.TileEntityRitualStone;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

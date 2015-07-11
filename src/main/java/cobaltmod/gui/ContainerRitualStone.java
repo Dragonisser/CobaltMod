@@ -7,8 +7,8 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
-import cobaltmod.entity.TileEntityCobaltFurnace;
-import cobaltmod.entity.TileEntityRitualStone;
+import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
+import cobaltmod.entity.tileentity.TileEntityRitualStone;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

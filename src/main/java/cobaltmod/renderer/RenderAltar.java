@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cobaltmod.entity.ModelAltar;
-import cobaltmod.entity.TileEntityAltar;
+import cobaltmod.entity.tileentity.TileEntityAltar;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

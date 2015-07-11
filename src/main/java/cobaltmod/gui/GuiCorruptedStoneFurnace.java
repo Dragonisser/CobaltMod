@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import cobaltmod.entity.TileEntityCorruptedStoneFurnace;
+import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
 
 @SideOnly(Side.CLIENT)
 public class GuiCorruptedStoneFurnace extends GuiContainer

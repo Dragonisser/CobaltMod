@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
 import cobaltmod.entity.ModelRitualStone;
-import cobaltmod.entity.TileEntityRitualStone;
+import cobaltmod.entity.tileentity.TileEntityRitualStone;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

@@ -15,7 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cobaltmod.entity.TileEntityPodium;
+import cobaltmod.entity.tileentity.TileEntityPodium;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.RenderPodium;
 import cpw.mods.fml.relauncher.Side;

@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import cobaltmod.entity.TileEntityCobaltFurnace;
+import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
 
 @SideOnly(Side.CLIENT)
 public class GuiCobaltFurnace extends GuiContainer

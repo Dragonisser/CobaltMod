@@ -1,6 +1,6 @@
 package cobaltmod.gui;
 
-import cobaltmod.entity.TileEntityCorruptedStoneFurnace;
+import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

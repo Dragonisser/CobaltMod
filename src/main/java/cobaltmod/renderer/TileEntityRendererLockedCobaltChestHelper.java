@@ -3,7 +3,7 @@ package cobaltmod.renderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererChestHelper;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import cobaltmod.entity.TileEntityLockedCobaltChest;
+import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

@@ -1,6 +1,6 @@
 package cobaltmod.renderer;
 
-import cobaltmod.entity.TileEntityCobexChest;
+import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

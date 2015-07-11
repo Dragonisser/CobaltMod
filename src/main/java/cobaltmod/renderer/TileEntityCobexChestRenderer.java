@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cobaltmod.entity.TileEntityCobexChest;
+import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.main.blocks.BlockCobexChest;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;

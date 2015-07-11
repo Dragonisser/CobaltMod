@@ -308,7 +308,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		if (this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0D) != null) {
 			EntityLivingBase entityplayer = (EntityLivingBase) this.worldObj.getClosestVulnerablePlayerToEntity(this, 10.0D);
 			if (!entityplayer.isPotionActive(CMContent.potion_cobalt_confusion)) {
-				entityplayer.addPotionEffect(new PotionEffect(CMContent.potion_cobalt_confusion.id, 15 * 20 * (int)durationMultiplier, 1));
+				entityplayer.addPotionEffect(new PotionEffect(CMContent.potion_cobalt_confusion.id, (int) (durationMultiplier * 15 * 20), 1));
 			}
 		}
 	}

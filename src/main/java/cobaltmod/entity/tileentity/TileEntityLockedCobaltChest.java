@@ -1,4 +1,4 @@
-package cobaltmod.entity;
+package cobaltmod.entity.tileentity;
 
 import java.util.Iterator;
 import java.util.List;

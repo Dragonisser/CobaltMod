@@ -25,7 +25,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cobaltmod.entity.TileEntityLockedCobaltChest;
+import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.TileEntityLockedCobaltChestRenderer;
 import cpw.mods.fml.relauncher.Side;

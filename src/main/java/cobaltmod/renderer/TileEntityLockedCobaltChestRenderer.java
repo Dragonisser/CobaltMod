@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cobaltmod.entity.TileEntityLockedCobaltChest;
+import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
 import cobaltmod.main.blocks.BlockLockedCobaltChest;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;

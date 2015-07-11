@@ -1,4 +1,4 @@
-package cobaltmod.entity;
+package cobaltmod.entity.tileentity;
 
 import cobaltmod.gui.AltarRecipes;
 import cobaltmod.main.blocks.BlockPodium;

@@ -1,9 +1,9 @@
 package cobaltmod.world.gen;
 import java.util.Random;
 
-import cobaltmod.entity.TileEntityCobexChest;
 
 
+import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.main.api.CMContent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

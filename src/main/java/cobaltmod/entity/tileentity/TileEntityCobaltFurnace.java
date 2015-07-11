@@ -1,6 +1,5 @@
-package cobaltmod.entity;
+package cobaltmod.entity.tileentity;
 
-import cobaltmod.main.blocks.BlockCorruptedStoneFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,11 +16,12 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import cobaltmod.main.blocks.BlockCobaltFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISidedInventory {
+public class TileEntityCobaltFurnace extends TileEntity implements ISidedInventory {
 	private static final int[] slots_top = new int[] { 0 };
 	private static final int[] slots_bottom = new int[] { 2, 1 };
 	private static final int[] slots_sides = new int[] { 1 };
@@ -107,7 +107,7 @@ public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISide
 	 * Returns the name of the inventory.
 	 */
 	public String getInvName() {
-		return this.isInvNameLocalized() ? this.field_94130_e : "Corrupted Stone Furnace";
+		return this.isInvNameLocalized() ? this.field_94130_e : "Cobalt Furnace";
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISide
 	 * cooked
 	 */
 	public int getCookProgressScaled(int par1) {
-		return this.furnaceCookTime * par1 / 200;
+		return this.furnaceCookTime * par1 / 100;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -195,7 +195,7 @@ public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISide
 	 */
 	public int getBurnTimeRemainingScaled(int par1) {
 		if (this.currentItemBurnTime == 0) {
-			this.currentItemBurnTime = 200;
+			this.currentItemBurnTime = 100;
 		}
 		return this.furnaceBurnTime * par1 / this.currentItemBurnTime;
 	}
@@ -233,7 +233,7 @@ public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISide
 			}
 			if (this.isBurning() && this.canSmelt()) {
 				++this.furnaceCookTime;
-				if (this.furnaceCookTime == 200) {
+				if (this.furnaceCookTime == 100) {
 					this.furnaceCookTime = 0;
 					this.smeltItem();
 					flag1 = true;
@@ -243,7 +243,7 @@ public class TileEntityCorruptedStoneFurnace extends TileEntity implements ISide
 			}
 			if (flag != this.furnaceBurnTime > 0) {
 				flag1 = true;
-				BlockCorruptedStoneFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				BlockCobaltFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		if (flag1) {

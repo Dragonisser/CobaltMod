@@ -1,10 +1,5 @@
-package cobaltmod.entity;
+package cobaltmod.entity.tileentity;
 
-import cobaltmod.gui.AltarRecipes;
-import cobaltmod.main.blocks.BlockAltarOfAssociation;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,16 +15,22 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import cobaltmod.gui.RitualStoneRecipes;
+import cobaltmod.main.blocks.BlockRitualStone;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityAltar extends TileEntity implements ISidedInventory
+public class TileEntityRitualStone extends TileEntity implements ISidedInventory
 {
     private static final int[] slots_top = new int[] {0};
-    private static final int[] slots_top1 = new int[] {1};
-    private static final int[] slots_sides = new int[] {2};
+    //private static final int[] slots_bottom = new int[] {2, 1};
+    private static final int[] slots_sides = new int[] {1};
+
     /**
      * The ItemStacks that hold the items currently being used in the furnace
      */
-    private ItemStack[] furnaceItemStacks = new ItemStack[3];
+    private ItemStack[] furnaceItemStacks = new ItemStack[2];
 
     /** The number of ticks that the furnace will keep burning */
     public int furnaceBurnTime;
@@ -129,7 +130,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
      */
     public String getInvName()
     {
-        return "Altar of Association";
+        return "Ritual Stone";
     }
 
     /**
@@ -225,7 +226,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
      */
     public int getCookProgressScaled(int par1)
     {
-        return this.furnaceCookTime * par1 / 200;
+        return this.furnaceCookTime * par1 / 500;
     }
 
     @SideOnly(Side.CLIENT)
@@ -258,11 +259,12 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
      */
     public void updateEntity()
     {
+    	
+    	
+    	this.furnaceBurnTime = 10000;
+    	
         boolean flag = this.furnaceBurnTime > 0;
         boolean flag1 = false;
-        
-        
-        this.furnaceBurnTime = 1000;
 
         if (this.furnaceBurnTime > 0)
         {
@@ -279,13 +281,13 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
                 {
                     flag1 = true;
 
-                    if (this.furnaceItemStacks[2] != null)
+                    if (this.furnaceItemStacks[1] != null)
                     {
-                        --this.furnaceItemStacks[2].stackSize;
+                        --this.furnaceItemStacks[1].stackSize;
 
-                        if (this.furnaceItemStacks[2].stackSize == 0)
+                        if (this.furnaceItemStacks[1].stackSize == 0)
                         {
-                            this.furnaceItemStacks[2] = this.furnaceItemStacks[2].getItem().getContainerItem(furnaceItemStacks[2]);
+                            this.furnaceItemStacks[1] = this.furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
                         }
                     }
                 }
@@ -295,7 +297,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
             {
                 ++this.furnaceCookTime;
 
-                if (this.furnaceCookTime == 200)
+                if (this.furnaceCookTime == 500)
                 {
                     this.furnaceCookTime = 0;
                     this.smeltItem();
@@ -310,7 +312,7 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
             if (flag != this.furnaceBurnTime > 0)
             {
                 flag1 = true;
-                BlockAltarOfAssociation.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockRitualStone.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -325,38 +327,19 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
      */
     private boolean canSmelt()
     {
-    	
-    	if (furnaceItemStacks[0] == null || furnaceItemStacks[1] == null)
+        if (this.furnaceItemStacks[0] == null)
         {
-                return false;
+            return false;
         }
-    	
-    	
-    	ItemStack itemstack = AltarRecipes.getSmeltingResult(furnaceItemStacks[0].getItem(), furnaceItemStacks[1].getItem());
-    	if (itemstack == null) return false;   	
-        
-        
-        if (this.furnaceItemStacks[2] == null) return true;
-        if (!this.furnaceItemStacks[2].isItemEqual(itemstack)) return false;
-        int result = furnaceItemStacks[2].stackSize + itemstack.stackSize;
-
-        return (result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
-        
-        
-        
-           /* ItemStack itemstack = AltarRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
+        else
+        {
+            ItemStack itemstack = RitualStoneRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
             if (itemstack == null) return false;
-            
-            ItemStack itemstack1 = AltarRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[1]);
-            if (itemstack1 == null) return false;
-            
-            
-            if (this.furnaceItemStacks[2] == null) return true;
-            if (!this.furnaceItemStacks[2].isItemEqual(itemstack)) return false;
-            int result = furnaceItemStacks[2].stackSize + itemstack.stackSize;
-            
-            
-            return (result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize() );*/
+            if (this.furnaceItemStacks[1] == null) return true;
+            if (!this.furnaceItemStacks[1].isItemEqual(itemstack)) return false;
+            int result = furnaceItemStacks[1].stackSize + itemstack.stackSize;
+            return (result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
+        }
     }
 
     /**
@@ -366,33 +349,23 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
     {
         if (this.canSmelt())
         {
-            AltarRecipes.smelting();
-			ItemStack itemstack = AltarRecipes.getSmeltingResult(furnaceItemStacks[0].getItem(), furnaceItemStacks[1].getItem());
+            ItemStack itemstack = RitualStoneRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
 
-            if (this.furnaceItemStacks[2] == null)
+            if (this.furnaceItemStacks[1] == null)
             {
-                this.furnaceItemStacks[2] = itemstack.copy();
+                this.furnaceItemStacks[1] = itemstack.copy();
             }
-            else if (this.furnaceItemStacks[2].isItemEqual(itemstack))
+            else if (this.furnaceItemStacks[1].isItemEqual(itemstack))
             {
-                furnaceItemStacks[2].stackSize += itemstack.stackSize;
+                furnaceItemStacks[1].stackSize += itemstack.stackSize;
             }
-            
-            for (int i = 0; i < 2; i++)
-            {
-            	--this.furnaceItemStacks[i].stackSize;
 
-            if (this.furnaceItemStacks[i].stackSize <= 0)
-            {
-                this.furnaceItemStacks[i] = null;
-            }  
-            }
-            
-            
-            	
-            
+            --this.furnaceItemStacks[0].stackSize;
 
-            
+            if (this.furnaceItemStacks[0].stackSize <= 0)
+            {
+                this.furnaceItemStacks[0] = null;
+            }
         }
     }
 
@@ -476,7 +449,8 @@ public class TileEntityAltar extends TileEntity implements ISidedInventory
      */
     public int[] getAccessibleSlotsFromSide(int par1)
     {
-        return par1 == 1 ? slots_top : (par1 == 1 ? slots_top1 : slots_sides);
+             //return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : null);
+    		return par1 == 1 ? slots_top : slots_sides;
     }
 
     /**
