@@ -17,7 +17,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CMBlocks {
 
 	public static void init() {
-		// 1.5.1 Pre1
+		
+		//TODO 1.5.1 Pre1
 		CMContent.cobaltore = new BlockCobaltOre().setBlockTextureName(CMMain.MODID + ":cobaltore").setBlockName("cobaltore")
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.cobaltblock = new BlockCobaltBlock().setBlockTextureName(CMMain.MODID + ":cobaltblock").setBlockName("cobaltblock")
@@ -36,16 +37,16 @@ public class CMBlocks {
 		CMContent.clematisflower = new BlockFlowerClematis(Material.plants).setBlockName("clematisflower")
 				.setBlockTextureName(CMMain.MODID + ":clematisflower").setCreativeTab(CMMain.cobalttabblocks);
 
-		// 1.5.1 Pre2
+		//TODO 1.5.1 Pre2
 		CMContent.redcabbagecrop = new BlockRedCabbageCrop().setBlockName("redcabbagecrop").setBlockTextureName(CMMain.MODID + ":redcabbagecrop");
 
-		// 1.5.2 Pre1
+		//TODO 1.5.2 Pre1
 		CMContent.cobaltbrick = new BlockCobaltBrick().setBlockName("cobaltbrick").setBlockTextureName(CMMain.MODID + ":cobaltbrick")
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.cobaltbrickstair = new BlockCobaltBrickStair(CMContent.cobaltbrick, 0).setBlockName("cobaltbrickstair")
 				.setBlockTextureName(CMMain.MODID + ":cobaltbrick").setCreativeTab(CMMain.cobalttabblocks);
 
-		// 1.5.2 Pre2
+		//TODO 1.5.2 Pre2
 
 		CMContent.cobaltstone = new BlockCobaltStone().setBlockName("cobaltstone").setBlockTextureName(CMMain.MODID + ":cobaltstone")
 				.setCreativeTab(CMMain.cobalttabblocks);
@@ -65,10 +66,10 @@ public class CMBlocks {
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.cobexdoubleslab = (BlockSlab) new BlockCobexSlab(true).setBlockName("").setBlockTextureName(CMMain.MODID + ":cobexwood");
 
-		// 1.6.2
+		//TODO 1.6.2
 		CMContent.bluefire = new BlockBlueFire().setBlockName("bluefire").setBlockTextureName(CMMain.MODID + ":bluefire_0");
 
-		// 1.6.4
+		//TODO 1.6.4
 		CMContent.bellflower = new BlockFlowerBell().setBlockName("bellflower").setBlockTextureName(CMMain.MODID + ":bellflower")
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.bouncycobalt = new BlockBouncyCobalt().setBlockName("bouncycobalt").setCreativeTab(CMMain.cobalttabblocks);
@@ -80,7 +81,7 @@ public class CMBlocks {
 		CMContent.cobexchest = new BlockCobexChest(0).setBlockName("cobexchest").setBlockTextureName(CMMain.MODID + ":normal")
 				.setCreativeTab(CMMain.cobalttabblocks);
 
-		// 1.7.2
+		//TODO 1.7.2
 
 		CMContent.cobexdoor = new BlockCobexDoor(Material.wood).setBlockName("cobexdoor");
 		CMContent.cobaltdoor = new BlockCobaltDoor(Material.iron).setBlockName("cobaltdoor");
@@ -93,7 +94,7 @@ public class CMBlocks {
 		CMContent.cobaltrune = new BlockCobaltRune().setBlockName("cobaltrune").setBlockTextureName(CMMain.MODID + ":cobaltbrick")
 				.setCreativeTab(CMMain.cobalttabblocks);
 
-		// 1.7.10
+		//TODO 1.7.10
 
 		CMContent.carthunore = new BlockCarthunOre().setBlockName("carthunore").setBlockTextureName(CMMain.MODID + ":carthunore")
 				.setCreativeTab(CMMain.cobalttabblocks);
@@ -132,6 +133,16 @@ public class CMBlocks {
 				CMMain.MODID + ":corruptedstonefurnace_b");
 		CMContent.cobaltchest = new BlockLockedCobaltChest(0, false).setBlockName("cobaltchest").setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.lockedcobaltchest = new BlockLockedCobaltChest(3, true).setBlockName("lockedcobaltchest").setHardness(-1.0F)
+				.setCreativeTab(CMMain.cobalttabblocks);
+
+		//TODO 1.7.10 current
+		CMContent.hardendcorruptedstone = new BlockHardendCorruptedStone().setBlockName("hardendcorruptedstone")
+				.setBlockTextureName(CMMain.MODID + ":hardendcorruptedstone").setCreativeTab(CMMain.cobalttabblocks);
+		CMContent.portalframecaves = new BlockPortalFrameCaves().setBlockName("portalframecaves").setBlockTextureName(CMMain.MODID + ":portalframecaves")
+				.setCreativeTab(CMMain.cobalttabblocks);
+		CMContent.portalcaves = (BlockPortal) new BlockPortalCaves().setBlockName("portalcaves").setBlockTextureName(CMMain.MODID + ":portalcaves")
+				.setHardness(-1.0F).setCreativeTab(CMMain.cobalttabblocks);
+		CMContent.bluishmushroom = new BlockBluishMushroom().setBlockName("bluishmushroom").setBlockTextureName(CMMain.MODID + ":bluishmushroom")
 				.setCreativeTab(CMMain.cobalttabblocks);
 
 		register();
@@ -206,6 +217,11 @@ public class CMBlocks {
 		GameRegistry.registerBlock(CMContent.corruptedstonefurnace_burning, "corruptedstonefurnace_burning");
 		GameRegistry.registerBlock(CMContent.cobaltchest, "cobaltchest");
 		GameRegistry.registerBlock(CMContent.lockedcobaltchest, "lockedcobaltchest");
+
+		GameRegistry.registerBlock(CMContent.hardendcorruptedstone, "hardendcorruptedstone");
+		GameRegistry.registerBlock(CMContent.portalframecaves, "portalframecaves");
+		GameRegistry.registerBlock(CMContent.portalcaves, "portalcaves");
+		GameRegistry.registerBlock(CMContent.bluishmushroom, "bluishmushroom");
 	}
 
 	public static void oredictregister() {

@@ -344,7 +344,7 @@ public class BlockBlueFire extends BlockFire {
 	 * Called whenever the block is added into the world. Args: world, x, y, z
 	 */
 	public void onBlockAdded(World world, int par2, int par3, int par4) {
-		if (/* world.provider.dimensionId > 0 || */!CMContent.cobaltportal.func_150000_e(world, par2, par3, par4)) {
+		if (!CMContent.cobaltportal.func_150000_e(world, par2, par3, par4) && !CMContent.portalcaves.func_150000_e(world, par2, par3, par4)) {
 			if (!World.doesBlockHaveSolidTopSurface(world, par2, par3 - 1, par4) && !this.canNeighborBurn(world, par2, par3, par4)) {
 				world.setBlockToAir(par2, par3, par4);
 			} else {

@@ -30,7 +30,6 @@ public class RecipeHandler
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexhoe, 1), new Object [] {"## ", " % ", " % ", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexshovel, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
 	    GameRegistry.addRecipe(new ItemStack(CMContent.cobexsword, 1), new Object [] {"#", "#", "%", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
-	  	GameRegistry.addRecipe(new ItemStack(CMContent.cocktailglass, 2), new Object [] {"# #", " # ", " # ", Character.valueOf('#'), Blocks.glass});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.njossstaff, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.njosscrystal, Character.valueOf('%'), CMContent.cobexstick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.foenumstaff, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.foenumcrystal, Character.valueOf('%'), CMContent.cobexstick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexsingleslab, 3), new Object [] {"###", Character.valueOf('#'), CMContent.cobexwood});

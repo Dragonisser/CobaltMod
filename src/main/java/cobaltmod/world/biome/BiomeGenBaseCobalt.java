@@ -12,6 +12,7 @@ public class BiomeGenBaseCobalt extends BiomeGenBase {
 	public static BiomeGenBase biomeswamp;
 	public static BiomeGenBase biometall;
 	public static BiomeGenBase biomehills;
+	public static BiomeGenBase biomecaves;
 
 	public BiomeGenBaseCobalt(int biomeId) {
 		super(biomeId);
@@ -25,6 +26,7 @@ public class BiomeGenBaseCobalt extends BiomeGenBase {
 		noConflict &= checkBiomeIDisClearOrOurs(CMMain.biomeswampid);
 		noConflict &= checkBiomeIDisClearOrOurs(CMMain.biometallid);
 		noConflict &= checkBiomeIDisClearOrOurs(CMMain.biomemountainsid);
+		noConflict &= checkBiomeIDisClearOrOurs(CMMain.biomecavesid);
 
 		if (!noConflict) {
 			FMLLog.warning("[CobaltMod] Biome ID conflict detected.  Edit the CobaltMod config to give all biomes unique IDs.", new Object[0]);
@@ -51,6 +53,7 @@ public class BiomeGenBaseCobalt extends BiomeGenBase {
 		biomeswamp = (new BiomeGenCobaltSwamp(CMMain.biomeswampid)).setBiomeName("Deep Swamp");
 		biometall = (new BiomeGenCobaltTall(CMMain.biometallid)).setBiomeName("Tall Forest");
 		biomehills = (new BiomeGenCobaltHills(CMMain.biomehillsid)).setBiomeName("Blue Mountains");
+		biomecaves = (new BiomeGenCobaltCaves(CMMain.biomecavesid)).setBiomeName("Cobalt Caves");
 
 		registerWithBiomeDictionary();
 	}

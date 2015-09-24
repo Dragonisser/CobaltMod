@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.caves;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -6,12 +6,12 @@ import net.minecraft.world.chunk.IChunkProvider;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
 import cpw.mods.fml.common.eventhandler.Event;
 
-public class ChunkProviderEventCobalt extends Event
+public class ChunkProviderEventCobaltCaves extends Event
 {
 
     public final IChunkProvider chunkProvider;
 
-    public ChunkProviderEventCobalt(IChunkProvider chunkProvider)
+    public ChunkProviderEventCobaltCaves(IChunkProvider chunkProvider)
     {
         this.chunkProvider = chunkProvider;
     }
@@ -23,7 +23,7 @@ public class ChunkProviderEventCobalt extends Event
      * You can set the result to DENY to prevent the default replacement.
      */
     @HasResult
-    public static class ReplaceBiomeBlocks extends ChunkProviderEventCobalt
+    public static class ReplaceBiomeBlocks extends ChunkProviderEventCobaltCaves
     {
         public final int chunkX;
         public final int chunkZ;
@@ -63,7 +63,7 @@ public class ChunkProviderEventCobalt extends Event
      * You can set the result to DENY to substitute your own noise field.
      */
     @HasResult
-    public static class InitNoiseField extends ChunkProviderEventCobalt
+    public static class InitNoiseField extends ChunkProviderEventCobaltCaves
     {
         public double[] noisefield;
         public final int posX;

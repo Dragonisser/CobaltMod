@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.caves;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -10,23 +10,24 @@ import cobaltmod.main.CMMain;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class WorldProviderCobalt extends WorldProvider {
+public class WorldProviderCobaltCaves extends WorldProvider {
 	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerCobalt(worldObj.getSeed(), terrainType);
-		this.dimensionId = CMMain.cobaltdimension;
+		this.worldChunkMgr = new WorldChunkManagerCobaltCaves(worldObj.getSeed(), terrainType);
+		this.dimensionId = CMMain.cobaltdimension1;
+		this.hasNoSky = true;
 	}
 
 	public String getDimensionName() {
-		return "Cobaltis";
+		return "Deep Caves";
 	}
 
 	@Override
 	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderCobalt(worldObj, worldObj.getSeed(), true);
+		return new ChunkProviderCobaltCaves(worldObj, worldObj.getSeed());
 	}
 
 	public String getSaveFolder() {
-		return "Cobaltis";
+		return "Deep Caves";
 	}
 
 	public boolean isSurfaceWorld() {
@@ -66,7 +67,7 @@ public class WorldProviderCobalt extends WorldProvider {
 		f5 *= f2;
 		f6 *= f2;
 
-		return Vec3.createVectorHelper((double) f4 - 0.5, (double) f5 - 0.5, (double) f6 - 0.5);
+		return Vec3.createVectorHelper((double) f4 - 0.8, (double) f5 - 0.7, (double) f6 - 0.8);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -91,12 +92,12 @@ public class WorldProviderCobalt extends WorldProvider {
 		float f5 = 1.0F;
 		f3 *= f2 * 0.94F + 0.06F;
 		f4 *= f2 * 0.94F + 0.06F;
-		f5 *= f2 * 0.91F + 0.09F;
-		return Vec3.createVectorHelper((double) f3 - 0.5, (double) f4 - 0.5, (double) f5 - 0.5);
+		f5 *= f2 * 0.91F + 0.F;
+		return Vec3.createVectorHelper((double) f3 - 0.5, (double) f4 - 0.5, (double) f5 - 0.4);
 	}
 
 	public String getWelcomeMessage() {
-		
-		return "Entering the Cobaltis";
+
+		return "Entering the Deep Caves";
 	}
 }

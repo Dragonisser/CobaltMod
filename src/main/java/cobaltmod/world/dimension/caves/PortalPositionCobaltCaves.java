@@ -1,16 +1,16 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.caves;
 
 import net.minecraft.util.ChunkCoordinates;
 
-public class PortalPositionCobalt extends ChunkCoordinates
+public class PortalPositionCobaltCaves extends ChunkCoordinates
 {
     /** The worldtime at which this PortalPosition was last verified */
     public long lastUpdateTime;
 
     /** The teleporter to which this PortalPosition applies */
-    final TeleporterCobalt teleporterInstance;
+    final TeleporterCobaltCaves teleporterInstance;
 
-    public PortalPositionCobalt(TeleporterCobalt teleporterCobalt, int par2, int par3, int par4, long par5)
+    public PortalPositionCobaltCaves(TeleporterCobaltCaves teleporterCobalt, int par2, int par3, int par4, long par5)
     {
         super(par2, par3, par4);
         this.teleporterInstance = teleporterCobalt;

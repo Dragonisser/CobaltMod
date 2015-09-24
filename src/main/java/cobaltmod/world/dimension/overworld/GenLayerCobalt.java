@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.overworld;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;

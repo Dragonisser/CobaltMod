@@ -1,20 +1,20 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.caves;
 
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
 
-public class GenLayerBiomesCobalt extends GenLayer {
+public class GenLayerBiomesCobaltCaves extends GenLayer {
 
-protected BiomeGenBase[] allowedBiomes = {BiomeGenBaseCobalt.biomehills, BiomeGenBaseCobalt.biomeplains, BiomeGenBaseCobalt.biomeswamp, BiomeGenBaseCobalt.biometall, BiomeGenBaseCobalt.biomemountains}; 
+protected BiomeGenBase[] allowedBiomes = {BiomeGenBaseCobalt.biomecaves}; 
 
-public GenLayerBiomesCobalt(long seed, GenLayer genlayer) {
+public GenLayerBiomesCobaltCaves(long seed, GenLayer genlayer) {
 	super(seed);
 	this.parent = genlayer;
 }
 
-public GenLayerBiomesCobalt(long seed) {
+public GenLayerBiomesCobaltCaves(long seed) {
 	super(seed);
 }
 

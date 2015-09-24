@@ -39,8 +39,6 @@ public class CMItems {
 				.setCreativeTab(CMMain.cobalttabitems);
 		CMContent.redcabbagejuice = new ItemRedCabbageJuice(4, false).setUnlocalizedName(CMMain.MODID + ":redcabbagejuice")
 				.setTextureName(CMMain.MODID + ":redcabbagejuice").setCreativeTab(CMMain.cobalttabitems);
-		CMContent.cocktailglass = new ItemCocktailGlass().setUnlocalizedName(CMMain.MODID + ":cocktailglass").setTextureName(CMMain.MODID + ":cocktailglass")
-				.setCreativeTab(CMMain.cobalttabitems);
 
 		// 1.5.2 Pre1
 
@@ -181,7 +179,6 @@ public class CMItems {
 		GameRegistry.registerItem(CMContent.cobexstick, "cobexstick");
 		GameRegistry.registerItem(CMContent.cobaltstonecrystal, "cobaltstonecrystal");
 		GameRegistry.registerItem(CMContent.cobaltstonefragment, "cobaltstonefragment");
-		GameRegistry.registerItem(CMContent.cocktailglass, "cocktailglass");
 		GameRegistry.registerItem(CMContent.foenumcrystal, "foenumcrystal");
 		GameRegistry.registerItem(CMContent.foenumstaff, "foenumstaff");
 		GameRegistry.registerItem(CMContent.greenessence, "greenessence");

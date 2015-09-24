@@ -39,7 +39,6 @@ import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
 import cobaltmod.handler.AchievementHandler;
 import cobaltmod.handler.GuiHandler;
-import cobaltmod.handler.MixerCraftingHandler;
 import cobaltmod.handler.RecipeHandler;
 import cobaltmod.handler.event.BucketHandler;
 import cobaltmod.handler.event.CobaltBlockBreakEventHandler;
@@ -56,7 +55,8 @@ import cobaltmod.main.items.CMItems;
 import cobaltmod.main.potions.CMPotions;
 import cobaltmod.network.CobaltPacketDispatcher;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
-import cobaltmod.world.dimension.WorldProviderCobalt;
+import cobaltmod.world.dimension.caves.WorldProviderCobaltCaves;
+import cobaltmod.world.dimension.overworld.WorldProviderCobalt;
 import cobaltmod.world.gen.WorldGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -90,6 +90,7 @@ public class CMMain {
 
 	// Dimension
 	public static int cobaltdimension;
+	public static int cobaltdimension1;
 	public static int portaltemple;
 
 	// WindAxe
@@ -109,6 +110,8 @@ public class CMMain {
 	public static int biomeswampid;
 	public static int biometallid;
 	public static int biomemountainsid;
+	
+	public static int biomecavesid;
 
 	// Dev
 	public static boolean devenabled;
@@ -141,6 +144,8 @@ public class CMMain {
 
 		cobaltdimension = config.get("Dimension", "Cobalt", 20).getInt();
 		config.get("Dimension", "Cobalt", 20).comment = "Which ID the Dimension has. Change it if you have problems with other Mods.";
+		
+		cobaltdimension1 = config.get("Dimension", "Deep Caves", 21).getInt();
 
 		portaltemple = config.get("PortalTemple", "Spawnrate", 30).getInt();
 		config.get("PortalTemple", "Spawnrate", 30).comment = "The Spawnrate of the CobaltTemple. Change it to a low number if you want to find it easier.";
@@ -165,6 +170,7 @@ public class CMMain {
 		biomeswampid = config.get("BiomeId", "Deep Swamp", 52).getInt();
 		biometallid = config.get("BiomeId", "Tall Forest", 53).getInt();
 		biometallid = config.get("BiomeId", "Highlands", 54).getInt();
+		biomecavesid = config.get("BiomeId", "Cobalt Caves", 55).getInt();
 
 		config.get("BiomeId", "Blue Hills", 50).comment = "Change the BiomesIds here if it conflicts with others.";
 
@@ -217,13 +223,11 @@ public class CMMain {
 		DimensionManager.registerProviderType(cobaltdimension, WorldProviderCobalt.class, true);
 		DimensionManager.registerDimension(cobaltdimension, cobaltdimension);
 
+		DimensionManager.registerProviderType(cobaltdimension1, WorldProviderCobaltCaves.class, true);
+		DimensionManager.registerDimension(cobaltdimension1, cobaltdimension1);
+
 		// Recipe
 		RecipeHandler.init();
-
-		// Mixxer Recipe
-		ItemStack[] bartendertest = new ItemStack[9];
-		bartendertest[1] = new ItemStack(CMContent.redcabbage);
-		MixerCraftingHandler.addRecipe(new ItemStack(CMContent.redcabbagejuice), new ItemStack(CMContent.cocktailglass), bartendertest);
 
 		// GuiHandler
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());

@@ -19,18 +19,17 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cobaltmod.entity.EntityBluePortalFX;
-import cobaltmod.handler.AchievementHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
-import cobaltmod.world.dimension.overworld.TeleporterCobalt;
+import cobaltmod.world.dimension.caves.TeleporterCobaltCaves;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCobaltPortal extends BlockPortal {
+public class BlockPortalCaves extends BlockPortal {
 	public static final int[][] field_150001_a = new int[][] { new int[0], { 3, 1 }, { 2, 0 } };
 
-	public BlockCobaltPortal() {
+	public BlockPortalCaves() {
 		super();
 		this.setTickRandomly(true);
 		this.setLightLevel(1.0F);
@@ -100,8 +99,8 @@ public class BlockCobaltPortal extends BlockPortal {
 	}
 
 	public boolean func_150000_e(World p_150000_1_, int p_150000_2_, int p_150000_3_, int p_150000_4_) {
-		BlockCobaltPortal.Size size = new BlockCobaltPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 1);
-		BlockCobaltPortal.Size size1 = new BlockCobaltPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 2);
+		BlockPortalCaves.Size size = new BlockPortalCaves.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 1);
+		BlockPortalCaves.Size size1 = new BlockPortalCaves.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 2);
 
 		if (size.func_150860_b() && size.field_150864_e == 0) {
 			size.func_150859_c();
@@ -121,8 +120,8 @@ public class BlockCobaltPortal extends BlockPortal {
 	 */
 	public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_) {
 		int l = func_149999_b(p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_));
-		BlockCobaltPortal.Size size = new BlockCobaltPortal.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 1);
-		BlockCobaltPortal.Size size1 = new BlockCobaltPortal.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 2);
+		BlockPortalCaves.Size size = new BlockPortalCaves.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 1);
+		BlockPortalCaves.Size size1 = new BlockPortalCaves.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 2);
 
 		if (l == 1 && (!size.func_150860_b() || size.field_150864_e < size.field_150868_h * size.field_150862_g)) {
 			p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_, Blocks.air);
@@ -196,26 +195,29 @@ public class BlockCobaltPortal extends BlockPortal {
 					thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
 				}
 			}
+
 			if (thePlayer.timeUntilPortal > 0) {
 				thePlayer.timeUntilPortal = thePlayer.getPortalCooldown();
+
 			} else {
 
 				if (thePlayer.capabilities.isCreativeMode || thePlayer.getEntityData().getInteger("TpTime") <= 0) {
 					if (entity instanceof EntityPlayer) {
 
-						EntityPlayer entityplayer = (EntityPlayer) entity;
-						entityplayer.addStat(AchievementHandler.cobaltachiev14, 1);
+						// EntityPlayer entityplayer = (EntityPlayer) entity;
+						// entityplayer.addStat(AchievementHandler.cobaltachiev14,
+						// 1);
 
-						if (thePlayer.dimension != CMMain.cobaltdimension) {
+						if (thePlayer.dimension != CMMain.cobaltdimension1) {
 
-							thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, CMMain.cobaltdimension,
-									new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(CMMain.cobaltdimension)));
+							thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, CMMain.cobaltdimension1,
+									new TeleporterCobaltCaves(thePlayer.mcServer.worldServerForDimension(CMMain.cobaltdimension1)));
 							thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
 							thePlayer.timeUntilPortal = 10;
 						} else {
 
 							thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0,
-									new TeleporterCobalt(thePlayer.mcServer.worldServerForDimension(0)));
+									new TeleporterCobaltCaves(thePlayer.mcServer.worldServerForDimension(0)));
 							thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
 							thePlayer.timeUntilPortal = 10;
 						}
@@ -295,8 +297,8 @@ public class BlockCobaltPortal extends BlockPortal {
 		public Size(World p_i45415_1_, int p_i45415_2_, int p_i45415_3_, int p_i45415_4_, int p_i45415_5_) {
 			this.field_150867_a = p_i45415_1_;
 			this.field_150865_b = p_i45415_5_;
-			this.field_150863_d = BlockCobaltPortal.field_150001_a[p_i45415_5_][0];
-			this.field_150866_c = BlockCobaltPortal.field_150001_a[p_i45415_5_][1];
+			this.field_150863_d = BlockPortalCaves.field_150001_a[p_i45415_5_][0];
+			this.field_150866_c = BlockPortalCaves.field_150001_a[p_i45415_5_][1];
 
 			for (int i1 = p_i45415_3_; p_i45415_3_ > i1 - 21 && p_i45415_3_ > 0
 					&& this.func_150857_a(p_i45415_1_.getBlock(p_i45415_2_, p_i45415_3_ - 1, p_i45415_4_)); --p_i45415_3_) {
@@ -336,13 +338,13 @@ public class BlockCobaltPortal extends BlockPortal {
 
 				Block block1 = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_ - 1, p_150853_3_ + k1 * i1);
 
-				if (block1 != CMContent.portalframe) {
+				if (block1 != CMContent.portalframecaves) {
 					break;
 				}
 			}
 
 			block = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_, p_150853_3_ + k1 * i1);
-			return block == CMContent.portalframe ? i1 : 0;
+			return block == CMContent.portalframecaves ? i1 : 0;
 		}
 
 		protected int func_150858_a() {
@@ -356,30 +358,30 @@ public class BlockCobaltPortal extends BlockPortal {
 				i = this.field_150861_f.posY + this.field_150862_g;
 
 				for (j = 0; j < this.field_150868_h; ++j) {
-					k = this.field_150861_f.posX + j * Direction.offsetX[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]];
-					l = this.field_150861_f.posZ + j * Direction.offsetZ[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]];
+					k = this.field_150861_f.posX + j * Direction.offsetX[BlockPortalCaves.field_150001_a[this.field_150865_b][1]];
+					l = this.field_150861_f.posZ + j * Direction.offsetZ[BlockPortalCaves.field_150001_a[this.field_150865_b][1]];
 					Block block = this.field_150867_a.getBlock(k, i, l);
 
 					if (!this.func_150857_a(block)) {
 						break label56;
 					}
 
-					if (block == CMContent.cobaltportal) {
+					if (block == CMContent.portalcaves) {
 						++this.field_150864_e;
 					}
 
 					if (j == 0) {
-						block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockCobaltPortal.field_150001_a[this.field_150865_b][0]], i, l
-								+ Direction.offsetZ[BlockCobaltPortal.field_150001_a[this.field_150865_b][0]]);
+						block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortalCaves.field_150001_a[this.field_150865_b][0]], i, l
+								+ Direction.offsetZ[BlockPortalCaves.field_150001_a[this.field_150865_b][0]]);
 
-						if (block != CMContent.portalframe) {
+						if (block != CMContent.portalframecaves) {
 							break label56;
 						}
 					} else if (j == this.field_150868_h - 1) {
-						block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]], i, l
-								+ Direction.offsetZ[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]]);
+						block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortalCaves.field_150001_a[this.field_150865_b][1]], i, l
+								+ Direction.offsetZ[BlockPortalCaves.field_150001_a[this.field_150865_b][1]]);
 
-						if (block != CMContent.portalframe) {
+						if (block != CMContent.portalframecaves) {
 							break label56;
 						}
 					}
@@ -387,11 +389,11 @@ public class BlockCobaltPortal extends BlockPortal {
 			}
 
 			for (i = 0; i < this.field_150868_h; ++i) {
-				j = this.field_150861_f.posX + i * Direction.offsetX[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]];
+				j = this.field_150861_f.posX + i * Direction.offsetX[BlockPortalCaves.field_150001_a[this.field_150865_b][1]];
 				k = this.field_150861_f.posY + this.field_150862_g;
-				l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockCobaltPortal.field_150001_a[this.field_150865_b][1]];
+				l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockPortalCaves.field_150001_a[this.field_150865_b][1]];
 
-				if (this.field_150867_a.getBlock(j, k, l) != CMContent.portalframe) {
+				if (this.field_150867_a.getBlock(j, k, l) != CMContent.portalframecaves) {
 					this.field_150862_g = 0;
 					break;
 				}
@@ -408,7 +410,7 @@ public class BlockCobaltPortal extends BlockPortal {
 		}
 
 		protected boolean func_150857_a(Block p_150857_1_) {
-			return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == CMContent.bluefire || p_150857_1_ == CMContent.cobaltportal;
+			return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == CMContent.bluefire || p_150857_1_ == CMContent.portalcaves;
 		}
 
 		public boolean func_150860_b() {
@@ -423,7 +425,7 @@ public class BlockCobaltPortal extends BlockPortal {
 
 				for (int l = 0; l < this.field_150862_g; ++l) {
 					int i1 = this.field_150861_f.posY + l;
-					this.field_150867_a.setBlock(j, i1, k, CMContent.cobaltportal, this.field_150865_b, 2);
+					this.field_150867_a.setBlock(j, i1, k, CMContent.portalcaves, this.field_150865_b, 2);
 				}
 			}
 		}
@@ -431,7 +433,7 @@ public class BlockCobaltPortal extends BlockPortal {
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister p_149651_1_) {
-		this.blockIcon = p_149651_1_.registerIcon("mod_cobalt:cobaltportal");
+		this.blockIcon = p_149651_1_.registerIcon("mod_cobalt:portalcaves");
 	}
 
 	@SideOnly(Side.CLIENT)

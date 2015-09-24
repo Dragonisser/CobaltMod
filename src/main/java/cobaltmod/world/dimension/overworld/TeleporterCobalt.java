@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension;
+package cobaltmod.world.dimension.overworld;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
