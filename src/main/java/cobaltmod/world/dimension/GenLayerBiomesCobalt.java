@@ -7,7 +7,7 @@ import cobaltmod.world.biome.BiomeGenBaseCobalt;
 
 public class GenLayerBiomesCobalt extends GenLayer {
 
-protected BiomeGenBase[] allowedBiomes = {BiomeGenBaseCobalt.biomehills, BiomeGenBaseCobalt.biomeplains, BiomeGenBaseCobalt.biomeswamp, BiomeGenBaseCobalt.biometall}; 
+protected BiomeGenBase[] allowedBiomes = {BiomeGenBaseCobalt.biomehills, BiomeGenBaseCobalt.biomeplains, BiomeGenBaseCobalt.biomeswamp, BiomeGenBaseCobalt.biometall, BiomeGenBaseCobalt.biomemountains}; 
 
 public GenLayerBiomesCobalt(long seed, GenLayer genlayer) {
 	super(seed);

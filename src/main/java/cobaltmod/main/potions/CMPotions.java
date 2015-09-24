@@ -1,4 +1,4 @@
-package cobaltmod.main.potion;
+package cobaltmod.main.potions;
 
 import cobaltmod.main.api.CMContent;
 

@@ -18,7 +18,7 @@ public class CobaltKeyHandler {
 	 * it every time
 	 * 
 	 */
-	
+
 	private final Minecraft mc;
 
 	/** Key index for easy handling */
@@ -35,17 +35,14 @@ public class CobaltKeyHandler {
 	 * bindings from elsewhere
 	 */
 	public static final KeyBinding[] keys = new KeyBinding[desc.length];
-	//public static final KeyBinding key =  new KeyBinding("Test", 31, "key.tut_inventory.desc");
 
-	//@SuppressWarnings("static-access")
 	public CobaltKeyHandler() {
 		mc = Minecraft.getMinecraft();
 		for (int i = 0; i < desc.length; ++i) {
 			keys[i] = new KeyBinding(desc[i], keyValues[i], StatCollector.translateToLocal("key.cobaltmod.label"));
-		ClientRegistry.registerKeyBinding(keys[i]);
-		
+			ClientRegistry.registerKeyBinding(keys[i]);
+
 		}
-	//ClientRegistry.registerKeyBinding(this.keys);
 	}
 
 	/**

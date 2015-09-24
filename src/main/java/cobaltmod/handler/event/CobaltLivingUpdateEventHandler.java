@@ -17,7 +17,6 @@ public class CobaltLivingUpdateEventHandler {
 				thePlayer.getEntityData().setInteger("TpTime", BlockCobaltPortal.getCoolDown());
 			}
 		}
-
 		if (event.entityLiving.isPotionActive(CMContent.potion_cobalt_resistance)) {
 			if (event.entityLiving.getActivePotionEffect(CMContent.potion_cobalt_resistance).getDuration() == 0) {
 				event.entityLiving.removePotionEffect(CMContent.potion_cobalt_resistance.id);

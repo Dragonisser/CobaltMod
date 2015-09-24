@@ -53,7 +53,7 @@ import cobaltmod.main.api.CMContent;
 import cobaltmod.main.blocks.BlockFluidDarkWater;
 import cobaltmod.main.blocks.CMBlocks;
 import cobaltmod.main.items.CMItems;
-import cobaltmod.main.potion.CMPotions;
+import cobaltmod.main.potions.CMPotions;
 import cobaltmod.network.CobaltPacketDispatcher;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
 import cobaltmod.world.dimension.WorldProviderCobalt;
@@ -82,7 +82,7 @@ public class CMMain {
 	public static CreativeTabs cobalttabblocks = new CreativeTabCobalt(CreativeTabs.getNextID(), "cobalttabblocks", 2);
 
 	// Entity
-	static int startEntityId = 3000;
+	static int startEntityId = 0;
 
 	// Armormaterial
 	public static ArmorMaterial BackpackArmor;

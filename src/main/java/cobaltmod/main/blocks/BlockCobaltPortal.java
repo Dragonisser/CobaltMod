@@ -30,8 +30,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockCobaltPortal extends BlockPortal {
 	public static final int[][] field_150001_a = new int[][] { new int[0], { 3, 1 }, { 2, 0 } };
 
-	// private int teleportCooldown = getCoolDown();
-
 	public BlockCobaltPortal() {
 		super();
 		this.setTickRandomly(true);
@@ -43,18 +41,12 @@ public class BlockCobaltPortal extends BlockPortal {
 	 * Ticks the block if it's been scheduled
 	 */
 	public void updateTick(World world, int x, int y, int z, Random random) {
-		// System.out.println(thePlayer.getEntityData().setInteger("TpTime",
-		// getCoolDown()););
-		// if (this.teleportCooldown < 0) {
-		// this.teleportCooldown = getCoolDown();
-		// }
-
 		super.updateTick(world, x, y, z, random);
 
 	}
 
 	public static int getCoolDown() {
-		return 600;
+		return 500;
 	}
 
 	/**
@@ -195,8 +187,6 @@ public class BlockCobaltPortal extends BlockPortal {
 			EntityPlayerMP thePlayer = (EntityPlayerMP) entity;
 
 			thePlayer.addPotionEffect(new PotionEffect(CMContent.potion_cobalt_confusion.id, (int) (0.5 * 20), 1));
-			// thePlayer.addPotionEffect(new PotionEffect(Potion.confusion.id,
-			// (int)(0.5 * 20), 10));
 
 			if (thePlayer.timeUntilPortal == 0) {
 				if (thePlayer.getEntityData().getInteger("TpTime") > 0) {
@@ -231,12 +221,9 @@ public class BlockCobaltPortal extends BlockPortal {
 							thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
 							thePlayer.timeUntilPortal = 10;
 						}
-
 					}
 				}
-
 			}
-
 		}
 	}
 

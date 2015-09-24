@@ -28,6 +28,7 @@ public class ItemBlueBackpack extends ItemArmor {
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		if (!world.isRemote) {
+			System.out.println("day");
 			// If player not sneaking, open the inventory gui
 			if (!player.isSneaking()) {
 				player.openGui(CMMain.instance, 5, world, (int) player.posX, (int) player.posY, (int) player.posZ);

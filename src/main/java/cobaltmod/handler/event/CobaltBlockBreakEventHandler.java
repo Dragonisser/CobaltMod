@@ -12,9 +12,7 @@ public class CobaltBlockBreakEventHandler {
 
 	@SubscribeEvent
 	public void CobaltPlayerHarvestEvent(HarvestDropsEvent event) {
-
 		if (event.harvester != null) {
-
 			if (event.block == Blocks.stone) {
 				Entity entity = new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(CMContent.stonefragment, 1));
 
@@ -23,7 +21,6 @@ public class CobaltBlockBreakEventHandler {
 					event.world.spawnEntityInWorld(entity);
 				}
 			}
-
 		}
 	}
 }
