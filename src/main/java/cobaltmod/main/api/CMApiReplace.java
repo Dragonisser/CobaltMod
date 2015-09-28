@@ -13,6 +13,10 @@ public class CMApiReplace {
 	public static Map<Block, Block> map = new HashMap<Block, Block>();	
 	
 	/**
+	 * 
+	 * --> UNUSED BECAUSE OF HEAVY LAGS WHILE USED <--
+	 * 
+	 * 
 	 * CMApiReplace.addSpreadingBlock(Blocks.grass, CMApiBlock_Item.cobaltgrass);
 	 * 
 	 * It searches for Block.Grass (Vanilla Grass) and replaces it with CMApiBlock_Item.cobaltgrass (CobaltMod Grass)

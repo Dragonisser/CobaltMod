@@ -88,6 +88,7 @@ public enum CMContent {
 	public static Block portalframecaves;
 	public static BlockPortal portalcaves;
 	public static Block bluishmushroom;
+	public static Block cobaltdeadbush;
 	
 
 	// Items
@@ -103,7 +104,7 @@ public enum CMContent {
 	public static Item cobexarrow;
 	public static Item redcabbageseeds;
 	public static Item redcabbage;
-	public static Item redcabbagejuice;
+	public static Item cookedredcabbage;
 	public static Item cobalthelmet;
 	public static Item cobaltplate;
 	public static Item cobaltlegs;

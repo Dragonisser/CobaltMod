@@ -18,6 +18,7 @@ public class ItemCobaltShovel extends ItemTool
     public ItemCobaltShovel(Item.ToolMaterial p_i45353_1_)
     {
         super(1.0F, p_i45353_1_, field_150916_c);
+        this.setHarvestLevel("shovel", 4);
     }
 
     public boolean func_150897_b(Block p_150897_1_)

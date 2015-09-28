@@ -27,6 +27,13 @@ public class CobaltPlayerTickEventHandler {
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
 
+		// ItemStack item = event.player.getHeldItem() ;
+		// if (item != null && item.getItem() instanceof ItemTool) {
+		// System.out.println(item.getItem().getHarvestLevel(item, "pickaxe"));
+		// System.out.println(item.getItem().getHarvestLevel(item, "shovel"));
+		// System.out.println(item.getItem().getHarvestLevel(item, "axe"));
+		// }
+
 		if (event.side.isClient() && event.phase.equals(TickEvent.Phase.START)) {
 			IAttributeInstance movement = event.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 			ItemStack[] is = event.player.inventory.armorInventory;

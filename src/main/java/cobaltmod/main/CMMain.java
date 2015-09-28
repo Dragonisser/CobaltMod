@@ -188,8 +188,8 @@ public class CMMain {
 		CMContent.CobaltOreArmor = EnumHelper.addArmorMaterial("Cobalt Armor", 50, new int[] { 4, 9, 7, 4 }, 7);
 		this.BackpackArmor = EnumHelper.addArmorMaterial("Backpack Armor", -1, new int[] { 0, 1, 0, 0 }, 0);
 		this.CobaltBackpackArmor = EnumHelper.addArmorMaterial("Cobalt Backpack Armor", -1, new int[] { 4, 9, 7, 4 }, 0);
-		CMContent.CobaltOreTool = EnumHelper.addToolMaterial("CobaltOre Tool", 3, 2000, 15.0F, 4.0F, 20);
-		CMContent.CobexTool = EnumHelper.addToolMaterial("CobaltWood Tool", 1, 150, 6.0F, 1.0F, 10);
+		CMContent.CobaltOreTool = EnumHelper.addToolMaterial("CobaltOre Tool", 4, 2000, 15.0F, 4.0F, 20);
+		CMContent.CobexTool = EnumHelper.addToolMaterial("CobexWood Tool", 1, 150, 6.0F, 1.0F, 10);
 		CMContent.MagicRodTool = EnumHelper.addToolMaterial("MagicRod Tool", 1, 10, 0.0F, 0.0F, 0);
 
 		// Blocks/Items

@@ -18,6 +18,7 @@ public class ItemCobexPickAxe extends ItemTool
     public ItemCobexPickAxe(ToolMaterial p_i45347_1_)
     {
         super(2.0F, p_i45347_1_, field_150915_c);
+        this.setHarvestLevel("pickaxe", 1);
     }
 
     public boolean func_150897_b(Block p_150897_1_)

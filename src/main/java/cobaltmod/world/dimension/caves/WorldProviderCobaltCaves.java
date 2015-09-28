@@ -38,14 +38,15 @@ public class WorldProviderCobaltCaves extends WorldProvider {
 		return false;
 	}
 
-	public float getCelestialAngle(float p_72826_1_) {
-		return this.calculateCelestialAngle(this.getWorldTime(), p_72826_1_);
-	}
+	public float calculateCelestialAngle(long p_76563_1_, float p_76563_3_)
+    {
+        return 0.5F;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
-		float f1 = this.getCelestialAngle(partialTicks);
+		float f1 = 0.5F;
 		float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
 		if (f2 < 0.0F) {

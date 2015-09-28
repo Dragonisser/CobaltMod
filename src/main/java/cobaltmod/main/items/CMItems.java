@@ -35,10 +35,10 @@ public class CMItems {
 		// 1.5.1 Pre2
 		CMContent.redcabbageseeds = new ItemRedCabbageSeeds(CMContent.redcabbagecrop, CMContent.cobaltfarmland)
 				.setUnlocalizedName(CMMain.MODID + ":redcabbageseeds").setTextureName(CMMain.MODID + ":redcabbageseeds").setCreativeTab(CMMain.cobalttabitems);
-		CMContent.redcabbage = new ItemRedCabbage(3, false).setUnlocalizedName(CMMain.MODID + ":redcabbage").setTextureName(CMMain.MODID + ":redcabbage")
+		CMContent.redcabbage = new ItemRedCabbage(2, false).setUnlocalizedName(CMMain.MODID + ":redcabbage").setTextureName(CMMain.MODID + ":redcabbage")
 				.setCreativeTab(CMMain.cobalttabitems);
-		CMContent.redcabbagejuice = new ItemRedCabbageJuice(4, false).setUnlocalizedName(CMMain.MODID + ":redcabbagejuice")
-				.setTextureName(CMMain.MODID + ":redcabbagejuice").setCreativeTab(CMMain.cobalttabitems);
+		CMContent.cookedredcabbage = new ItemCookedRedCabbage(4, false).setUnlocalizedName(CMMain.MODID + ":cookedredcabbage")
+				.setTextureName(CMMain.MODID + ":cookedredcabbage").setCreativeTab(CMMain.cobalttabitems);
 
 		// 1.5.2 Pre1
 
@@ -185,7 +185,7 @@ public class CMItems {
 		GameRegistry.registerItem(CMContent.njosscrystal, "njosscrystal");
 		GameRegistry.registerItem(CMContent.njossstaff, "njossstaff");
 		GameRegistry.registerItem(CMContent.redcabbage, "redcabbage");
-		GameRegistry.registerItem(CMContent.redcabbagejuice, "redcabbagejuice");
+		GameRegistry.registerItem(CMContent.cookedredcabbage, "cookedredcabbage");
 		GameRegistry.registerItem(CMContent.redcabbageseeds, "redcabbageseeds");
 		GameRegistry.registerItem(CMContent.cobexdoor1, "cobexwooddoor");
 		GameRegistry.registerItem(CMContent.cobaltdoor1, "cobaltdoor");

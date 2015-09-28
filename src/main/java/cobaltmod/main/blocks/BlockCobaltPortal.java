@@ -41,7 +41,6 @@ public class BlockCobaltPortal extends BlockPortal {
 	 * Ticks the block if it's been scheduled
 	 */
 	public void updateTick(World world, int x, int y, int z, Random random) {
-		super.updateTick(world, x, y, z, random);
 
 	}
 

@@ -10,6 +10,6 @@ public class BlockHardendCorruptedStone extends Block {
 		this.setHardness(4F);
 		this.setResistance(5F);
 		this.setStepSound(Block.soundTypeStone);
-		this.setHarvestLevel("pickaxe", 3);
+		this.setHarvestLevel("pickaxe", 4);
 	}
 }

@@ -1,97 +1,125 @@
 package cobaltmod.network;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import cobaltmod.main.CMMain;
 import cobaltmod.network.packet.CobaltAbstractMessageHandler;
 import cobaltmod.network.packet.bidirectional.CobaltAbstractBiMessageHandler;
 import cobaltmod.network.packet.client.CobaltAbstractClientMessageHandler;
 import cobaltmod.network.packet.server.CobaltAbstractServerMessageHandler;
 import cobaltmod.network.packet.server.CobaltOpenGuiMessage;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 
-
 /**
  * 
- * This class will house the SimpleNetworkWrapper instance, which I will name 'dispatcher',
- * as well as give us a logical place from which to register our packets. These two things
- * could be done anywhere, however, even in your Main class, but I will be adding other
- * functionality (see below) that gives this class a bit more utility. 
+ * This class will house the SimpleNetworkWrapper instance, which I will name
+ * 'dispatcher', as well as give us a logical place from which to register our
+ * packets. These two things could be done anywhere, however, even in your Main
+ * class, but I will be adding other functionality (see below) that gives this
+ * class a bit more utility.
  * 
- * While unnecessary, I'm going to turn this class into a 'wrapper' for SimpleNetworkWrapper
- * so that instead of writing "PacketDispatcher.dispatcher.{method}" I can simply write
- * "PacketDispatcher.{method}" All this does is make it quicker to type and slightly shorter;
- * if you do not care about that, then make the 'dispatcher' field public instead of private,
- * or, if you do not want to add a new class just for one field and one static method that
- * you could put anywhere, feel free to put them wherever.
+ * While unnecessary, I'm going to turn this class into a 'wrapper' for
+ * SimpleNetworkWrapper so that instead of writing
+ * "PacketDispatcher.dispatcher.{method}" I can simply write
+ * "PacketDispatcher.{method}" All this does is make it quicker to type and
+ * slightly shorter; if you do not care about that, then make the 'dispatcher'
+ * field public instead of private, or, if you do not want to add a new class
+ * just for one field and one static method that you could put anywhere, feel
+ * free to put them wherever.
  * 
- * For further convenience, I have also added two extra sendToAllAround methods: one which
- * takes an EntityPlayer and one which takes coordinates.
+ * For further convenience, I have also added two extra sendToAllAround methods:
+ * one which takes an EntityPlayer and one which takes coordinates.
  *
  */
-public class CobaltPacketDispatcher
-{
-	// a simple counter will allow us to get rid of 'magic' numbers used during packet registration
+public class CobaltPacketDispatcher {
+	// a simple counter will allow us to get rid of 'magic' numbers used during
+	// packet registration
 	private static byte packetId = 0;
 
 	/**
-	 * The SimpleNetworkWrapper instance is used both to register and send packets.
-	 * Since I will be adding wrapper methods, this field is private, but you should
-	 * make it public if you plan on using it directly.
+	 * The SimpleNetworkWrapper instance is used both to register and send
+	 * packets. Since I will be adding wrapper methods, this field is private,
+	 * but you should make it public if you plan on using it directly.
 	 */
 	private static final SimpleNetworkWrapper dispatcher = NetworkRegistry.INSTANCE.newSimpleChannel(CMMain.MODID);
 
 	/**
-	 * Call this during pre-init or loading and register all of your packets (messages) here
+	 * Call this during pre-init or loading and register all of your packets
+	 * (messages) here
 	 */
 	public static final void registerPackets() {
-		// Using an incrementing field instead of hard-coded numerals, I don't need to think
-		// about what number comes next or if I missed on should I ever rearrange the order
-		// of registration (for instance, if you wanted to alphabetize them... yeah...)
+		// Using an incrementing field instead of hard-coded numerals, I don't
+		// need to think
+		// about what number comes next or if I missed on should I ever
+		// rearrange the order
+		// of registration (for instance, if you wanted to alphabetize them...
+		// yeah...)
 		// It's even easier if you create a convenient 'registerMessage' method:
 		registerMessage(CobaltOpenGuiMessage.Handler.class, CobaltOpenGuiMessage.class);
-		//registerMessage(SyncPlayerPropsMessage.Handler.class, SyncPlayerPropsMessage.class);
+		// registerMessage(SyncPlayerPropsMessage.Handler.class,
+		// SyncPlayerPropsMessage.class);
 
-		// If you don't want to make a 'registerMessage' method, you can do it directly:
-		//PacketDispatcher.dispatcher.registerMessage(OpenGuiMessage.OpenGuiMessageHandler.class, OpenGuiMessage.class, packetId++, Side.SERVER);
-		//PacketDispatcher.dispatcher.registerMessage(SyncPlayerPropsMessage.SyncPlayerPropsMessageHandler.class, SyncPlayerPropsMessage.class, packetId++, Side.CLIENT);
+		// If you don't want to make a 'registerMessage' method, you can do it
+		// directly:
+		// PacketDispatcher.dispatcher.registerMessage(OpenGuiMessage.OpenGuiMessageHandler.class,
+		// OpenGuiMessage.class, packetId++, Side.SERVER);
+		// PacketDispatcher.dispatcher.registerMessage(SyncPlayerPropsMessage.SyncPlayerPropsMessageHandler.class,
+		// SyncPlayerPropsMessage.class, packetId++, Side.CLIENT);
 
-		/** The following two packets are not used in this demo, but have been used in my other mods */
-		/** I include them here simply for the sake of demonstrating packets that can be sent to both sides */
-		// Bi-directional packets (each side handled differently, implementing AbstractBiMessageHandler)
-		//registerMessage(PlaySoundPacket.Handler.class, PlaySoundPacket.class);
+		/**
+		 * The following two packets are not used in this demo, but have been
+		 * used in my other mods
+		 */
+		/**
+		 * I include them here simply for the sake of demonstrating packets that
+		 * can be sent to both sides
+		 */
+		// Bi-directional packets (each side handled differently, implementing
+		// AbstractBiMessageHandler)
+		// registerMessage(PlaySoundPacket.Handler.class,
+		// PlaySoundPacket.class);
 
-		// Bi-directional packets using standard IMessageHandler implementation (handled identically on both sides)
-		// Note how this packet requires a separate method, since there is no way to determine side
+		// Bi-directional packets using standard IMessageHandler implementation
+		// (handled identically on both sides)
+		// Note how this packet requires a separate method, since there is no
+		// way to determine side
 		// based on the handler class
-		//registerBiMessage(AttackTimePacket.Handler.class, AttackTimePacket.class);
+		// registerBiMessage(AttackTimePacket.Handler.class,
+		// AttackTimePacket.class);
 	}
 
 	/**
-	 * Registers a message and message handler on the designated side;
-	 * used for standard IMessage + IMessageHandler implementations
+	 * Registers a message and message handler on the designated side; used for
+	 * standard IMessage + IMessageHandler implementations
 	 */
-	private static final <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass, Class<REQ> messageClass, Side side) {
+	private static final <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass,
+			Class<REQ> messageClass, Side side) {
 		CobaltPacketDispatcher.dispatcher.registerMessage(handlerClass, messageClass, packetId++, side);
 	}
 
 	/**
-	 * Registers a message and message handler on both sides; used mainly
-	 * for standard IMessage + IMessageHandler implementations and ideal
-	 * for messages that are handled identically on either side
+	 * Registers a message and message handler on both sides; used mainly for
+	 * standard IMessage + IMessageHandler implementations and ideal for
+	 * messages that are handled identically on either side
 	 */
-	private static final <REQ extends IMessage, REPLY extends IMessage> void registerBiMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass, Class<REQ> messageClass) {
+	private static final <REQ extends IMessage, REPLY extends IMessage> void registerBiMessage(Class<? extends IMessageHandler<REQ, REPLY>> handlerClass,
+			Class<REQ> messageClass) {
 		CobaltPacketDispatcher.dispatcher.registerMessage(handlerClass, messageClass, packetId, Side.CLIENT);
 		CobaltPacketDispatcher.dispatcher.registerMessage(handlerClass, messageClass, packetId++, Side.SERVER);
 	}
 
 	/**
-	 * Registers a message and message handler, automatically determining Side(s) based on the handler class
-	 * @param handlerClass	Must extend one of {@link AbstractClientMessageHandler}, {@link AbstractServerMessageHandler}, or {@link AbstractBiMessageHandler}
+	 * Registers a message and message handler, automatically determining
+	 * Side(s) based on the handler class
+	 * 
+	 * @param handlerClass
+	 *            Must extend one of {@link AbstractClientMessageHandler},
+	 *            {@link AbstractServerMessageHandler}, or
+	 *            {@link AbstractBiMessageHandler}
 	 */
 	private static final <REQ extends IMessage> void registerMessage(Class<? extends CobaltAbstractMessageHandler<REQ>> handlerClass, Class<REQ> messageClass) {
 		if (CobaltAbstractClientMessageHandler.class.isAssignableFrom(handlerClass)) {
@@ -105,53 +133,55 @@ public class CobaltPacketDispatcher
 		}
 	}
 
-	//========================================================//
+	// ========================================================//
 	// The following methods are the 'wrapper' methods; again,
 	// this just makes sending a message slightly more compact
 	// and is purely a matter of stylistic preference
-	//========================================================//
+	// ========================================================//
 
 	/**
-	 * Send this message to the specified player.
-	 * See {@link SimpleNetworkWrapper#sendTo(IMessage, EntityPlayerMP)}
+	 * Send this message to the specified player. See
+	 * {@link SimpleNetworkWrapper#sendTo(IMessage, EntityPlayerMP)}
 	 */
 	public static final void sendTo(IMessage message, EntityPlayerMP player) {
 		CobaltPacketDispatcher.dispatcher.sendTo(message, player);
 	}
 
 	/**
-	 * Send this message to everyone within a certain range of a point.
-	 * See {@link SimpleNetworkWrapper#sendToDimension(IMessage, NetworkRegistry.TargetPoint)}
+	 * Send this message to everyone within a certain range of a point. See
+	 * {@link SimpleNetworkWrapper#sendToDimension(IMessage, NetworkRegistry.TargetPoint)}
 	 */
 	public static final void sendToAllAround(IMessage message, NetworkRegistry.TargetPoint point) {
 		CobaltPacketDispatcher.dispatcher.sendToAllAround(message, point);
 	}
 
 	/**
-	 * Sends a message to everyone within a certain range of the coordinates in the same dimension.
+	 * Sends a message to everyone within a certain range of the coordinates in
+	 * the same dimension.
 	 */
 	public static final void sendToAllAround(IMessage message, int dimension, double x, double y, double z, double range) {
 		CobaltPacketDispatcher.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range));
 	}
 
 	/**
-	 * Sends a message to everyone within a certain range of the player provided.
+	 * Sends a message to everyone within a certain range of the player
+	 * provided.
 	 */
 	public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) {
 		CobaltPacketDispatcher.sendToAllAround(message, player.worldObj.provider.dimensionId, player.posX, player.posY, player.posZ, range);
 	}
 
 	/**
-	 * Send this message to everyone within the supplied dimension.
-	 * See {@link SimpleNetworkWrapper#sendToDimension(IMessage, int)}
+	 * Send this message to everyone within the supplied dimension. See
+	 * {@link SimpleNetworkWrapper#sendToDimension(IMessage, int)}
 	 */
 	public static final void sendToDimension(IMessage message, int dimensionId) {
 		CobaltPacketDispatcher.dispatcher.sendToDimension(message, dimensionId);
 	}
 
 	/**
-	 * Send this message to the server.
-	 * See {@link SimpleNetworkWrapper#sendToServer(IMessage)}
+	 * Send this message to the server. See
+	 * {@link SimpleNetworkWrapper#sendToServer(IMessage)}
 	 */
 	public static final void sendToServer(IMessage message) {
 		CobaltPacketDispatcher.dispatcher.sendToServer(message);

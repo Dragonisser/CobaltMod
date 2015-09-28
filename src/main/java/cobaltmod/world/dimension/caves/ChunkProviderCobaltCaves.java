@@ -21,9 +21,11 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import cobaltmod.main.api.CMContent;
@@ -47,7 +49,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 	/** Is the world that the nether is getting generated. */
 	private World worldObj;
 	private double[] noiseField;
-//	public MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
+	// public MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
 	/**
 	 * Holds the noise used to determine whether slowsand can be generated at a
 	 * location
@@ -212,13 +214,13 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 										block1 = CMContent.hardendcorruptedstone;
 
 										if (flag1) {
-											// block = Blocks.gravel;
+											//block = CMContent.cobaltdirt;
 											block1 = CMContent.hardendcorruptedstone;
 										}
 
 										if (flag) {
-											// block = Blocks.soul_sand;
-											// block1 = Blocks.soul_sand;
+											//block = CMContent.cobaltdirt;
+											//block1 = CMContent.cobaltdirt;
 										}
 									}
 
@@ -270,7 +272,8 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 		this.func_147419_a(p_73154_1_, p_73154_2_, ablock);
 		this.replaceBiomeBlocks(p_73154_1_, p_73154_2_, ablock, meta, abiomegenbase);
 		this.netherCaveGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
-//		this.genNetherBridge.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
+		// this.genNetherBridge.func_151539_a(this, this.worldObj, p_73154_1_,
+		// p_73154_2_, ablock);
 		Chunk chunk = new Chunk(this.worldObj, ablock, meta, p_73154_1_, p_73154_2_);
 		byte[] abyte = chunk.getBiomeArray();
 
@@ -430,7 +433,8 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 
 		int k = p_73153_2_ * 16;
 		int l = p_73153_3_ * 16;
-//		this.genNetherBridge.generateStructuresInChunk(this.worldObj, this.hellRNG, p_73153_2_, p_73153_3_);
+		// this.genNetherBridge.generateStructuresInChunk(this.worldObj,
+		// this.hellRNG, p_73153_2_, p_73153_3_);
 		int i1;
 		int j1;
 		int k1;
@@ -446,7 +450,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 		// }
 
 		i1 = this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1;
-		int i2;
+		//int i2;
 
 		// doGen = TerrainGen.populate(p_73153_1_, worldObj, hellRNG,
 		// p_73153_2_, p_73153_3_, false, FIRE);
@@ -480,27 +484,26 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 
 		MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldObj, hellRNG, k, l));
 
-		// doGen = TerrainGen.decorate(worldObj, hellRNG, k, l, SHROOM);
-		// if (doGen && this.hellRNG.nextInt(1) == 0) {
-		// j1 = k + this.hellRNG.nextInt(16) + 8;
-		// k1 = this.hellRNG.nextInt(128);
-		// l1 = l + this.hellRNG.nextInt(16) + 8;
-		// (new WorldGenFlowers(Blocks.brown_mushroom)).generate(this.worldObj,
-		// this.hellRNG, j1, k1, l1);
-		// }
-		//
-		// if (doGen && this.hellRNG.nextInt(1) == 0) {
-		// j1 = k + this.hellRNG.nextInt(16) + 8;
-		// k1 = this.hellRNG.nextInt(128);
-		// l1 = l + this.hellRNG.nextInt(16) + 8;
-		// (new WorldGenFlowers(Blocks.red_mushroom)).generate(this.worldObj,
-		// this.hellRNG, j1, k1, l1);
-		// }
+		doGen = TerrainGen.decorate(worldObj, hellRNG, k, l, Decorate.EventType.SHROOM);
+		if (doGen && this.hellRNG.nextInt(1) == 0) {
+			j1 = k + this.hellRNG.nextInt(16) + 8;
+			k1 = this.hellRNG.nextInt(128);
+			l1 = l + this.hellRNG.nextInt(16) + 8;
+			(new WorldGenFlowers(CMContent.bluishmushroom)).generate(this.worldObj, this.hellRNG, j1, k1, l1);
+		}
+		
+		 if (doGen && this.hellRNG.nextInt(1) == 0) {
+		 j1 = k + this.hellRNG.nextInt(16) + 8;
+		 k1 = this.hellRNG.nextInt(128);
+		 l1 = l + this.hellRNG.nextInt(16) + 8;
+		 (new WorldGenFlowers(CMContent.cobaltdeadbush)).generate(this.worldObj,
+		 this.hellRNG, j1, k1, l1);
+		 }
 
 		// WorldGenMinable worldgenminable = new
 		// WorldGenMinable(Blocks.quartz_ore, 13,
 		// CMContent.hardendcorruptedstone);
-		int j2;
+		//int j2;
 
 		// doGen = TerrainGen.generateOre(worldObj, hellRNG, worldgenminable, k,
 		// l, QUARTZ);
@@ -569,14 +572,17 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 	 */
 	public List<?> getPossibleCreatures(EnumCreatureType p_73155_1_, int p_73155_2_, int p_73155_3_, int p_73155_4_) {
 		if (p_73155_1_ == EnumCreatureType.monster) {
-//			if (this.genNetherBridge.hasStructureAt(p_73155_2_, p_73155_3_, p_73155_4_)) {
-//				return this.genNetherBridge.getSpawnList();
-//			}
-//
-//			if (this.genNetherBridge.func_142038_b(p_73155_2_, p_73155_3_, p_73155_4_)
-//					&& this.worldObj.getBlock(p_73155_2_, p_73155_3_ - 1, p_73155_4_) == Blocks.nether_brick) {
-//				return this.genNetherBridge.getSpawnList();
-//			}
+			// if (this.genNetherBridge.hasStructureAt(p_73155_2_, p_73155_3_,
+			// p_73155_4_)) {
+			// return this.genNetherBridge.getSpawnList();
+			// }
+			//
+			// if (this.genNetherBridge.func_142038_b(p_73155_2_, p_73155_3_,
+			// p_73155_4_)
+			// && this.worldObj.getBlock(p_73155_2_, p_73155_3_ - 1, p_73155_4_)
+			// == Blocks.nether_brick) {
+			// return this.genNetherBridge.getSpawnList();
+			// }
 		}
 
 		BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(p_73155_2_, p_73155_4_);
@@ -592,6 +598,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 	}
 
 	public void recreateStructures(int p_82695_1_, int p_82695_2_) {
-//		this.genNetherBridge.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[]) null);
+		// this.genNetherBridge.func_151539_a(this, this.worldObj, p_82695_1_,
+		// p_82695_2_, (Block[]) null);
 	}
 }

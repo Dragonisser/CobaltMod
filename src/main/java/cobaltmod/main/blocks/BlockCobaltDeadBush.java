@@ -9,9 +9,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import cobaltmod.main.api.CMContent;
 
-public class BlockBluishMushroom extends BlockBush implements IGrowable {
+public class BlockCobaltDeadBush extends BlockBush implements IGrowable {
 
-	protected BlockBluishMushroom() {
+	protected BlockCobaltDeadBush() {
 		super(Material.plants);
 		this.setHardness(0.1F);
 		this.setResistance(0.2F);

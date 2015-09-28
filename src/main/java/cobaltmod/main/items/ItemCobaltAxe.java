@@ -18,6 +18,7 @@ public class ItemCobaltAxe extends ItemTool
 	public ItemCobaltAxe(ToolMaterial tool) 
 	{
 		super(3.0F, tool, field_150917_c);
+		this.setHarvestLevel("axe", 4);
 	}
 	public float func_150893_a(ItemStack p_150893_1_, Block block)
     {
