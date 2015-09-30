@@ -20,7 +20,8 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	private int timerfireball = 400;
 	private Entity targetedEntity;
 	private int explosionStrength = 1;
-	public int innerRotation;
+	public int innerRotation = 0;
+	private boolean dying = false;
 
 	public EntityCobaltGuardian(World par1World) {
 		super(par1World);
@@ -29,6 +30,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		this.experienceValue = 50;
 		this.innerRotation = this.rand.nextInt(100000);
 		this.setHealth(this.getMaxHealth());
+
 	}
 
 	protected void applyEntityAttributes() {
@@ -64,7 +66,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	}
 
 	public int getTotalArmorValue() {
-		return 10;
+		return 20;
 	}
 
 	public void onLivingUpdate() {
@@ -76,39 +78,45 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 
 		}
 
-		if (!this.worldObj.isRemote && this.targetedEntity != null) {
-			if (this.getHealth() >= 300) {
-				if (this.timerminion <= 0) {
-					this.timerminion = 200;
-					this.spawnMinionStage(0);
+		if (!dying) {
+			if (!this.worldObj.isRemote && this.targetedEntity != null) {
+				if (this.getHealth() >= 300) {
+					if (this.timerminion <= 0) {
+						this.timerminion = 200;
+						this.spawnMinionStage(0);
+						this.spawnShockWave(0.2D);
+					}
 				}
-			}
-			if (this.getHealth() <= 300 && this.getHealth() >= 150) {
-				if (this.timerminion <= 0) {
-					this.timerminion = 300;
-					this.spawnMinionStage(1);
+				if (this.getHealth() <= 300 && this.getHealth() >= 150) {
+					if (this.timerminion <= 0) {
+						this.timerminion = 300;
+						this.spawnMinionStage(1);
+						this.spawnAttractionWave(1.0D);
+					}
 				}
-			}
-			if (this.getHealth() <= 200 && this.getHealth() >= 150) {
-				this.timerfireball--;
+				if (this.getHealth() <= 200 && this.getHealth() >= 150) {
+					this.timerfireball--;
 
-				if (this.timerfireball <= 0) {
-					this.spawnFireballStage(1);
-					this.spawnShockWave(0.5D);
-					this.applyConfusion(1);
-					this.timerfireball = 200;
+					if (this.timerfireball <= 0) {
+						this.spawnFireballStage(1);
+						this.spawnShockWave(0.5D);
+						this.spawnAttractionWave(0.5D);
+						this.applyConfusion(1);
+						this.timerfireball = 200;
+					}
 				}
-			}
-			if (this.getHealth() <= 150) {
-				this.timerfireball--;
-				this.timerfireball--;
+				if (this.getHealth() <= 150) {
+					this.timerfireball--;
+					this.timerfireball--;
 
-				if (this.timerfireball <= 0) {
-					this.spawnFireballStage(0);
-					this.spawnShockWave(1.0D);
-					this.applyConfusion(1.5);
-					this.timerfireball = 75;
+					if (this.timerfireball <= 0) {
+						this.spawnFireballStage(0);
+						this.spawnShockWave(1.0D);
+						this.spawnAttractionWave(0.5D);
+						this.applyConfusion(1.5);
+						this.timerfireball = 75;
 
+					}
 				}
 			}
 		}
@@ -134,7 +142,9 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	protected void dropFewItems(boolean par1, int par2) {
 		double d = Math.random();
 		double d1 = Math.random();
+
 		if (d < 0.5) {
+			this.dropItem(CMContent.blueessence, 1 + this.rand.nextInt(3));
 		}
 
 		else if (d < 0.7) {
@@ -157,6 +167,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		++this.deathTicks;
 
 		if (this.deathTicks >= 180 && this.deathTicks <= 200) {
+			this.dying = true;
 			float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
 			float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
 			float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
@@ -301,6 +312,33 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 				entityplayer.addVelocity(vec.xCoord, y, vec.zCoord);
 				entityplayer.velocityChanged = true;
 			}
+		}
+	}
+
+	public void spawnAttractionWave(double y) {
+
+		if (this.worldObj.getClosestVulnerablePlayerToEntity(this, 30.0D) != null) {
+			EntityLivingBase entityplayer = (EntityLivingBase) this.worldObj.getClosestVulnerablePlayerToEntity(this, 30.0D);
+
+			Vec3 vec = Vec3.createVectorHelper(entityplayer.posX - this.posX, entityplayer.posY - this.posY, entityplayer.posZ - this.posZ);
+			double distance = vec.lengthVector();
+			distance = 1 / distance;
+			vec.normalize();
+			vec.xCoord *= distance;
+			vec.yCoord *= distance;
+			vec.zCoord *= distance;
+
+			double d = Math.random();
+
+			System.out.println(distance);
+			if (distance > 0.036 && distance < 0.076) {
+				System.out.println("Trying to attract");
+				if (d < 0.5) {
+					entityplayer.addVelocity(-vec.xCoord, y, -vec.zCoord);
+					entityplayer.velocityChanged = true;
+				}
+			}
+
 		}
 	}
 
