@@ -1,6 +1,7 @@
 package cobaltmod.world.dimension.caves;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_CAVE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA;
 
 import java.util.List;
@@ -29,6 +30,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import cobaltmod.main.api.CMContent;
+import cobaltmod.world.gen.WorldGenCobaltDungeon;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class ChunkProviderCobaltCaves implements IChunkProvider {
@@ -214,13 +216,13 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 										block1 = CMContent.hardendcorruptedstone;
 
 										if (flag1) {
-											//block = CMContent.cobaltdirt;
+											// block = CMContent.cobaltdirt;
 											block1 = CMContent.hardendcorruptedstone;
 										}
 
 										if (flag) {
-											//block = CMContent.cobaltdirt;
-											//block1 = CMContent.cobaltdirt;
+											// block = CMContent.cobaltdirt;
+											// block1 = CMContent.cobaltdirt;
 										}
 									}
 
@@ -435,6 +437,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 		int l = p_73153_3_ * 16;
 		// this.genNetherBridge.generateStructuresInChunk(this.worldObj,
 		// this.hellRNG, p_73153_2_, p_73153_3_);
+		@SuppressWarnings("unused")
 		int i1;
 		int j1;
 		int k1;
@@ -450,7 +453,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 		// }
 
 		i1 = this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1;
-		//int i2;
+		int i2;
 
 		// doGen = TerrainGen.populate(p_73153_1_, worldObj, hellRNG,
 		// p_73153_2_, p_73153_3_, false, FIRE);
@@ -491,19 +494,28 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 			l1 = l + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenFlowers(CMContent.bluishmushroom)).generate(this.worldObj, this.hellRNG, j1, k1, l1);
 		}
-		
-		 if (doGen && this.hellRNG.nextInt(1) == 0) {
-		 j1 = k + this.hellRNG.nextInt(16) + 8;
-		 k1 = this.hellRNG.nextInt(128);
-		 l1 = l + this.hellRNG.nextInt(16) + 8;
-		 (new WorldGenFlowers(CMContent.cobaltdeadbush)).generate(this.worldObj,
-		 this.hellRNG, j1, k1, l1);
-		 }
+
+		if (doGen && this.hellRNG.nextInt(1) == 0) {
+			j1 = k + this.hellRNG.nextInt(16) + 8;
+			k1 = this.hellRNG.nextInt(128);
+			l1 = l + this.hellRNG.nextInt(16) + 8;
+			(new WorldGenFlowers(CMContent.cobaltdeadbush)).generate(this.worldObj, this.hellRNG, j1, k1, l1);
+		}
+
+		doGen = TerrainGen.populate(p_73153_1_, worldObj, hellRNG, p_73153_2_, p_73153_3_, false, DUNGEON);
+		// System.out.println(doGen);
+		for (k1 = 0; doGen && k1 < 8; ++k1) {
+			// System.out.println("Trying to create dungeon");
+			l1 = k + this.hellRNG.nextInt(16) + 8;
+			i2 = this.hellRNG.nextInt(256);
+			int j2 = l + this.hellRNG.nextInt(16) + 8;
+			(new WorldGenCobaltDungeon()).generate(this.worldObj, this.hellRNG, l1, i2, j2);
+		}
 
 		// WorldGenMinable worldgenminable = new
 		// WorldGenMinable(Blocks.quartz_ore, 13,
 		// CMContent.hardendcorruptedstone);
-		//int j2;
+		// int j2;
 
 		// doGen = TerrainGen.generateOre(worldObj, hellRNG, worldgenminable, k,
 		// l, QUARTZ);
