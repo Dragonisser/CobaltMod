@@ -18,6 +18,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	public int deathTicks = 0;
 	private int timerminion = 200;
 	private int timerfireball = 400;
+	private int timerCobaltZombie = 800;
 	private Entity targetedEntity;
 	private int explosionStrength = 1;
 	public int innerRotation = 0;
@@ -72,6 +73,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	public void onLivingUpdate() {
 		this.innerRotation++;
 		this.timerminion--;
+		this.timerCobaltZombie--;
 
 		if (this.targetedEntity == null) {
 			this.targetedEntity = this.worldObj.getClosestVulnerablePlayerToEntity(this, 40.0D);
@@ -83,14 +85,14 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 				if (this.getHealth() >= 300) {
 					if (this.timerminion <= 0) {
 						this.timerminion = 200;
-						this.spawnMinionStage(0);
+						this.spawnMinionStage(1);
 						this.spawnShockWave(0.2D);
 					}
 				}
 				if (this.getHealth() <= 300 && this.getHealth() >= 150) {
 					if (this.timerminion <= 0) {
 						this.timerminion = 300;
-						this.spawnMinionStage(1);
+						this.spawnMinionStage(2);
 						this.spawnAttractionWave(1.0D);
 					}
 				}
@@ -98,7 +100,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 					this.timerfireball--;
 
 					if (this.timerfireball <= 0) {
-						this.spawnFireballStage(1);
+						this.spawnFireballStage(2);
 						this.spawnShockWave(0.5D);
 						this.spawnAttractionWave(0.5D);
 						this.applyConfusion(1);
@@ -110,12 +112,17 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 					this.timerfireball--;
 
 					if (this.timerfireball <= 0) {
-						this.spawnFireballStage(0);
+
+						this.spawnFireballStage(1);
 						this.spawnShockWave(1.0D);
 						this.spawnAttractionWave(0.5D);
 						this.applyConfusion(1.5);
 						this.timerfireball = 75;
 
+					}
+					if (this.timerCobaltZombie <= 0) {
+						this.spawnCobaltZombieStage(1);
+						this.timerCobaltZombie = 800;
 					}
 				}
 			}
@@ -219,26 +226,24 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		this.moveEntity(0D, 3.0D, 0D);
 
 		EntityCobaltGuardianMinion entityCGM = new EntityCobaltGuardianMinion(this.worldObj);
-		EntityCobaltGuardianMinion entityCGM1 = new EntityCobaltGuardianMinion(this.worldObj);
 
-		switch (stage) {
-		case 0:
-
+		for (int i = 0; i < stage; i++) {
 			entityCGM.setLocationAndAngles(this.posX + Math.random(), this.posY + 1.5D, this.posZ + Math.random(), this.rotationYaw, this.rotationPitch);
 			this.worldObj.spawnEntityInWorld(entityCGM);
-			break;
-
-		case 1:
-			entityCGM.setLocationAndAngles(this.posX + Math.random(), this.posY + 1.5D, this.posZ + Math.random(), this.rotationYaw, this.rotationPitch);
-			this.worldObj.spawnEntityInWorld(entityCGM);
-
-			entityCGM1.setLocationAndAngles(this.posX + Math.random(), this.posY + 1.5D, this.posZ + Math.random(), this.rotationYaw, this.rotationPitch);
-			this.worldObj.spawnEntityInWorld(entityCGM1);
-			break;
-
-		default:
-			break;
 		}
+
+	}
+
+	private void spawnCobaltZombieStage(int stage) {
+		this.moveEntity(0D, 3.0D, 0D);
+
+		EntityCobaltZombie entityCZ = new EntityCobaltZombie(this.worldObj);
+
+		for (int i = 0; i < stage; i++) {
+			entityCZ.setLocationAndAngles(this.posX + Math.random(), this.posY + 1.5D, this.posZ + Math.random(), this.rotationYaw, this.rotationPitch);
+			this.worldObj.spawnEntityInWorld(entityCZ);
+		}
+
 	}
 
 	public void spawnFireballStage(int stage) {
@@ -253,42 +258,17 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 			if (this.canEntityBeSeen(this.targetedEntity)) {
 
 				EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.worldObj, this, d5, d6, d7);
-				EntityLargeFireball entitylargefireball1 = new EntityLargeFireball(this.worldObj, this, d5, d6, d7);
 
 				double d8 = 4.0D;
 				Vec3 vec3 = this.getLook(1.0F);
 
-				double d8_1 = 4.0D;
-				Vec3 vec3_1 = this.getLook(1.0F);
-
-				switch (stage) {
-				case (0):
-					this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
-					entitylargefireball.field_92057_e = this.explosionStrength;
-					entitylargefireball.posX = this.posX + vec3.xCoord * d8;
-					entitylargefireball.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
-					entitylargefireball.posZ = this.posZ + vec3.zCoord * d8;
-					this.worldObj.spawnEntityInWorld(entitylargefireball);
-					break;
-
-				case (1):
-
+				for (int i = 0; i < stage; i++) {
 					this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
 					entitylargefireball.field_92057_e = this.explosionStrength;
 					entitylargefireball.posX = this.posX + 1.0D + vec3.xCoord * d8;
 					entitylargefireball.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
 					entitylargefireball.posZ = this.posZ + vec3.zCoord * d8;
 					this.worldObj.spawnEntityInWorld(entitylargefireball);
-
-					this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1008, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
-					entitylargefireball1.field_92057_e = this.explosionStrength;
-					entitylargefireball1.posX = this.posX - 1.0D + vec3_1.xCoord * d8_1;
-					entitylargefireball1.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
-					entitylargefireball1.posZ = this.posZ + vec3_1.zCoord * d8_1;
-					this.worldObj.spawnEntityInWorld(entitylargefireball1);
-
-				default:
-					break;
 				}
 			}
 		}
@@ -332,7 +312,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 
 			System.out.println(distance);
 			if (distance > 0.036 && distance < 0.076) {
-				System.out.println("Trying to attract");
+				//System.out.println("Trying to attract");
 				if (d < 0.5) {
 					entityplayer.addVelocity(-vec.xCoord, y, -vec.zCoord);
 					entityplayer.velocityChanged = true;
