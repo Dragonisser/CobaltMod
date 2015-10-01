@@ -9,7 +9,9 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.init.Blocks;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cobaltmod.main.api.CMContent;
@@ -19,6 +21,8 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 	private int timerminion = 200;
 	private int timerfireball = 400;
 	private int timerCobaltZombie = 800;
+	private int timerFireballimmune = 150;
+	private int timerBrickShield = 0;
 	private Entity targetedEntity;
 	private int explosionStrength = 1;
 	public int innerRotation = 0;
@@ -31,7 +35,6 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		this.experienceValue = 50;
 		this.innerRotation = this.rand.nextInt(100000);
 		this.setHealth(this.getMaxHealth());
-
 	}
 
 	protected void applyEntityAttributes() {
@@ -74,6 +77,14 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		this.innerRotation++;
 		this.timerminion--;
 		this.timerCobaltZombie--;
+		if (this.timerFireballimmune > 0 && !this.worldObj.isRemote) {
+			this.timerFireballimmune--;
+		}
+		if (this.timerBrickShield == 400 && !this.worldObj.isRemote) {
+			this.removeBrickShield();
+		}
+
+		System.out.println(this.timerBrickShield);
 
 		if (this.targetedEntity == null) {
 			this.targetedEntity = this.worldObj.getClosestVulnerablePlayerToEntity(this, 40.0D);
@@ -98,6 +109,11 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 				}
 				if (this.getHealth() <= 200 && this.getHealth() >= 150) {
 					this.timerfireball--;
+					this.timerBrickShield--;
+					if (this.timerBrickShield <= 0) {
+						this.spawnBrickShield();
+						this.timerBrickShield = 700;
+					}
 
 					if (this.timerfireball <= 0) {
 						this.spawnFireballStage(2);
@@ -110,6 +126,12 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 				if (this.getHealth() <= 150) {
 					this.timerfireball--;
 					this.timerfireball--;
+					this.timerBrickShield--;
+
+					if (this.timerBrickShield <= 0) {
+						this.spawnBrickShield();
+						this.timerBrickShield = 700;
+					}
 
 					if (this.timerfireball <= 0) {
 
@@ -126,8 +148,28 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 					}
 				}
 			}
+		} else if (dying && this.deathTicks < 200) {
+			// this.spawnFireballStage(5);
 		}
 
+	}
+
+	public boolean attackEntityFrom(DamageSource ds, float p_70097_2_) {
+		System.out.println("GOT HIT");
+		System.out.println(ds.damageType);
+		super.attackEntityFrom(ds, p_70097_2_);
+
+		if (ds.damageType.equals("fireball")) {
+			System.out.println("GOT HIT BUT IMMUNE");
+			this.timerFireballimmune = 50 + this.rand.nextInt(40);
+			if (this.timerFireballimmune > 0) {
+				System.out.println("IMMUNE");
+				return false;
+			}
+		} else if (ds.damageType.equals("indirectMagic")) {
+			return false;
+		}
+		return false;
 	}
 
 	public int getWatchedTargetId(int par1) {
@@ -171,10 +213,13 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 
 	protected void onDeathUpdate() {
 
+		this.dying = true;
+		this.removeBrickShield();
+
 		++this.deathTicks;
 
 		if (this.deathTicks >= 180 && this.deathTicks <= 200) {
-			this.dying = true;
+
 			float f = (this.rand.nextFloat() - 0.5F) * 8.0F;
 			float f1 = (this.rand.nextFloat() - 0.5F) * 4.0F;
 			float f2 = (this.rand.nextFloat() - 0.5F) * 8.0F;
@@ -238,6 +283,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 		this.moveEntity(0D, 3.0D, 0D);
 
 		EntityCobaltZombie entityCZ = new EntityCobaltZombie(this.worldObj);
+		entityCZ.setCanDie(false);
 
 		for (int i = 0; i < stage; i++) {
 			entityCZ.setLocationAndAngles(this.posX + Math.random(), this.posY + 1.5D, this.posZ + Math.random(), this.rotationYaw, this.rotationPitch);
@@ -272,6 +318,43 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 				}
 			}
 		}
+	}
+
+	public void spawnBrickShield() {
+
+		if (!this.worldObj.isRemote) {
+			for (int x = (int) (this.posX - 4); x < this.posX + 3; x++) {
+				for (int z = (int) (this.posZ - 3); z < this.posZ + 3; z++) {
+					for (int y = (int) (this.posY - 1); y < this.posY + 5; y++) {
+
+						System.out.println("x: " + x + " y: " + y + " z: " + z);
+						this.worldObj.setBlock(x, y, z, CMContent.cobaltbrick);
+					}
+				}
+			}
+			for (int x = (int) (this.posX - 3); x < this.posX + 2; x++) {
+				for (int z = (int) (this.posZ - 2); z < this.posZ + 2; z++) {
+					for (int y = (int) (this.posY - 1); y < this.posY + 5; y++) {
+						this.worldObj.setBlock(x, y, z, Blocks.air);
+					}
+				}
+			}
+		}
+
+	}
+
+	public void removeBrickShield() {
+
+		if (!this.worldObj.isRemote) {
+			for (int x = (int) (this.posX - 4); x < this.posX + 3; x++) {
+				for (int z = (int) (this.posZ - 3); z < this.posZ + 3; z++) {
+					for (int y = (int) (this.posY - 1); y < this.posY + 5; y++) {
+						this.worldObj.setBlock(x, y, z, Blocks.air);
+					}
+				}
+			}
+		}
+
 	}
 
 	public void spawnShockWave(double y) {
@@ -312,7 +395,7 @@ public class EntityCobaltGuardian extends EntityMob implements IBossDisplayData 
 
 			System.out.println(distance);
 			if (distance > 0.036 && distance < 0.076) {
-				//System.out.println("Trying to attract");
+				// System.out.println("Trying to attract");
 				if (d < 0.5) {
 					entityplayer.addVelocity(-vec.xCoord, y, -vec.zCoord);
 					entityplayer.velocityChanged = true;

@@ -26,6 +26,8 @@ import cobaltmod.main.api.CMContent;
 
 public class EntityCobaltZombie extends EntityMob {
 
+	private boolean canDie = true;
+
 	public EntityCobaltZombie(World par1World) {
 		super(par1World);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -76,10 +78,10 @@ public class EntityCobaltZombie extends EntityMob {
 	protected void entityInit() {
 		super.entityInit();
 	}
-
-	/*
-	 * public int getAttackStrength(Entity par1Entity) { return 3; }
-	 */
+	
+	public void setCanDie(boolean canDie) {
+		this.canDie = canDie;
+	}
 
 	public EnumCreatureAttribute getCreatureAttribute() {
 		return EnumCreatureAttribute.UNDEAD;
@@ -94,7 +96,7 @@ public class EntityCobaltZombie extends EntityMob {
 	}
 
 	public void onLivingUpdate() {
-		if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+		if (this.worldObj.isDaytime() && !this.worldObj.isRemote && this.canDie) {
 			if (this.worldObj.provider.dimensionId == CMMain.cobaltdimension) {
 				float var1 = this.getBrightness(1.0F);
 

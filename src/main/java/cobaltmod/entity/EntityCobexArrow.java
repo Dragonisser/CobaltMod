@@ -320,6 +320,7 @@ public class EntityCobexArrow extends Entity implements IThrowableEntity
                     }
                     else
                     {
+                    	
                         damagesource = CMMain.causeCobaltArrowDamage(this, this.shootingEntity);
                     }
 

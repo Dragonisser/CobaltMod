@@ -29,7 +29,7 @@ public class ItemCobaltSword extends ItemSword
         this.maxStackSize = 1;
         this.setMaxDamage(toolMaterial.getMaxUses());
 
-        this.weaponDamage = 5.0F + toolMaterial.getDamageVsEntity();
+        this.weaponDamage = 7.0F + toolMaterial.getDamageVsEntity();
     }
 
     public float func_82803_g()

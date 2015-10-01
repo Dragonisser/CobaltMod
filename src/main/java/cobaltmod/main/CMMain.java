@@ -5,6 +5,8 @@ package cobaltmod.main;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import org.apache.logging.log4j.LogManager;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -337,14 +339,14 @@ public class CMMain {
 	public void modsLoaded(FMLPostInitializationEvent evt) {
 		// Ic²
 		if (Loader.isModLoaded("IC2")) {
-			System.out.println("[CobaltMod] Found IC2. Enabling support");
+			LogManager.getLogger("COBALTMOD").info("Found IC2. Enabling support");
 			try {
 				IC2SupportHandler.isIC2Installed();
 			} catch (Exception e) {
 			}
 		}
 		if (Loader.isModLoaded("NotEnoughItems")) {
-			System.out.println("[CobaltMod] Found NEI. Enabling support");
+			LogManager.getLogger("COBALTMOD").info("Found NEI. Enabling support");
 			try {
 				// NEISupportHandler.isNEIInstalled();
 			} catch (Exception e) {
@@ -378,8 +380,8 @@ public class CMMain {
 					f.set(null, newPotionTypes);
 				}
 			} catch (Exception e) {
-				System.err.println("Severe error, please report this to the mod author:");
-				System.err.println(e);
+				LogManager.getLogger("COBALTMOD").info("Severe error, please report this to the mod author");
+				LogManager.getLogger("COBALTMOD").info(e);
 			}
 		}
 	}
