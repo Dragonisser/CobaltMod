@@ -22,6 +22,7 @@ import cobaltmod.main.api.CMContent;
 public class EntityBlueBuddy extends EntityAnimal {
 
 	public boolean ispanic = false;
+	private int fleeTime = 6;
 
 	public EntityBlueBuddy(World par1World) {
 		super(par1World);
@@ -43,6 +44,19 @@ public class EntityBlueBuddy extends EntityAnimal {
 	 */
 	public boolean isAIEnabled() {
 		return true;
+	}
+
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+
+		if (this.isPanic() && this.ticksExisted % 20 == 0) {
+			System.out.println(fleeTime);
+			fleeTime--;
+			if (this.fleeTime <= 0) {
+				this.ispanic = false;
+				this.fleeTime = 6;
+			}
+		}
 	}
 
 	protected void applyEntityAttributes() {
@@ -110,8 +124,10 @@ public class EntityBlueBuddy extends EntityAnimal {
 	}
 
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
-		this.ispanic = true;
-
+		if (this.ticksExisted > 10) {
+			this.ispanic = true;
+			this.fleeTime = 6;
+		}
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
