@@ -178,20 +178,16 @@ public class BlockDarkWater extends BlockFluidClassic {
 
 				Block spreadable = world.getBlock(i1, j1, k1);
 				if (world.getChunkProvider().chunkExists(i1 / 16, k1 / 16)) {
+					if(rand.nextInt(4) != 0) return;
 					if (world.getChunkFromBlockCoords(x, z).isChunkLoaded) {
 						if (world.getBlock(j1, y - 1, k1) != CMContent.cobaltgrass) {
 							if (CMApiReplace.map.containsKey(spreadable)) {
 								world.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
 							}
 						}
-
 					}
-
 				}
 			}
-
 		}
-
 	}
-
 }

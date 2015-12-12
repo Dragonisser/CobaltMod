@@ -141,19 +141,8 @@ public class BlockCobexLeaves extends BlockLeavesBase implements IShearable {
 				int k1 = par4 + par5Random.nextInt(3) - 1;
 
 				Block spreadable = par1World.getBlock(i1, j1, k1);
-
-				// System.out.println("Searching");
-
 				if (CMApiReplace.map.containsKey(spreadable)) {
-
 					par1World.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
-
-					// System.out.println("Spreadable Block = " + spreadable);
-					// System.out.println("Contains Key = " +
-					// CMApiReplace.map.containsKey(spreadable));
-					// System.out.println("Contains Value = " +
-					// CMApiReplace.map.get(spreadable));
-
 				}
 			}
 		}

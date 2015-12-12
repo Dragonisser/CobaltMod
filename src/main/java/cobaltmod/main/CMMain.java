@@ -5,12 +5,11 @@ package cobaltmod.main;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import org.apache.logging.log4j.LogManager;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityList.EntityEggInfo;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -25,6 +24,9 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+
+import org.apache.logging.log4j.LogManager;
+
 import cobaltmod.entity.EntityBlueBuddy;
 import cobaltmod.entity.EntityBlueSlime;
 import cobaltmod.entity.EntityCobaltGuardian;
@@ -50,6 +52,7 @@ import cobaltmod.handler.event.CraftingHandler;
 import cobaltmod.handler.event.PickupHandler;
 import cobaltmod.handler.event.SmeltingHandler;
 import cobaltmod.handler.ic2.IC2SupportHandler;
+import cobaltmod.main.api.CMApiReplace;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.main.blocks.BlockFluidDarkWater;
 import cobaltmod.main.blocks.CMBlocks;
@@ -112,7 +115,7 @@ public class CMMain {
 	public static int biomeswampid;
 	public static int biometallid;
 	public static int biomemountainsid;
-	
+
 	public static int biomecavesid;
 
 	// Dev
@@ -146,7 +149,7 @@ public class CMMain {
 
 		cobaltdimension = config.get("Dimension", "Cobalt", 20).getInt();
 		config.get("Dimension", "Cobalt", 20).comment = "Which ID the Dimension has. Change it if you have problems with other Mods.";
-		
+
 		cobaltdimension1 = config.get("Dimension", "Deep Caves", 21).getInt();
 
 		portaltemple = config.get("PortalTemple", "Spawnrate", 30).getInt();
@@ -298,26 +301,20 @@ public class CMMain {
 		 * Reason because it lags so intense. Not so good .-.
 		 */
 
-		// CMApiReplace.addSpreadingBlock(Blocks.grass, CMContent.cobaltgrass);
-		// CMApiReplace.addSpreadingBlock(Blocks.dirt, CMContent.cobaltgrass);
-		// CMApiReplace.addSpreadingBlock(Blocks.dirt, CMContent.cobaltdirt);
-		// CMApiReplace.addSpreadingBlock(CMContent.cobaltdirt,
-		// CMContent.cobaltgrass);
-		// CMApiReplace.addSpreadingBlock(Blocks.log, CMContent.cobexlog);
-		// CMApiReplace.addSpreadingBlock(Blocks.log2, CMContent.cobexlog);
-		// CMApiReplace.addSpreadingBlock(Blocks.leaves, CMContent.cobexleaves);
-		// CMApiReplace.addSpreadingBlock(Blocks.leaves2,
-		// CMContent.cobexleaves);
-		// CMApiReplace.addSpreadingBlock(Blocks.red_flower,
-		// CMContent.clematisflower);
-		// CMApiReplace.addSpreadingBlock(Blocks.water, CMContent.darkwater);
-		// CMApiReplace.addSpreadingBlock(Blocks.vine, CMContent.bluevine);
-		// CMApiReplace.addSpreadingBlock(Blocks.waterlily,
-		// CMContent.waterthorn);
-		// CMApiReplace.addSpreadingBlock(Blocks.yellow_flower,
-		// CMContent.glowflower);
-		// CMApiReplace.addSpreadingBlock(Blocks.tallgrass,
-		// CMContent.bluetallgrass);
+		CMApiReplace.addSpreadingBlock(Blocks.grass, CMContent.cobaltgrass);
+		CMApiReplace.addSpreadingBlock(Blocks.dirt, CMContent.cobaltgrass);
+		CMApiReplace.addSpreadingBlock(Blocks.dirt, CMContent.cobaltdirt);
+		CMApiReplace.addSpreadingBlock(CMContent.cobaltdirt, CMContent.cobaltgrass);
+		CMApiReplace.addSpreadingBlock(Blocks.log, CMContent.cobexlog);
+		CMApiReplace.addSpreadingBlock(Blocks.log2, CMContent.cobexlog);
+		CMApiReplace.addSpreadingBlock(Blocks.leaves, CMContent.cobexleaves);
+		CMApiReplace.addSpreadingBlock(Blocks.leaves2, CMContent.cobexleaves);
+		CMApiReplace.addSpreadingBlock(Blocks.red_flower, CMContent.clematisflower);
+		CMApiReplace.addSpreadingBlock(Blocks.water, CMContent.darkwater);
+		CMApiReplace.addSpreadingBlock(Blocks.vine, CMContent.bluevine);
+		CMApiReplace.addSpreadingBlock(Blocks.waterlily, CMContent.waterthorn);
+		CMApiReplace.addSpreadingBlock(Blocks.yellow_flower, CMContent.glowflower);
+		CMApiReplace.addSpreadingBlock(Blocks.tallgrass, CMContent.bluetallgrass);
 	}
 
 	// Entity Egg

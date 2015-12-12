@@ -29,7 +29,7 @@ public class ChestGenHooksCobalt {
 
 		hasInit = true;
 
-		addInfo(COBALT_DUNGEON_CHEST, WorldGenCobaltDungeon.field_111189_a, 8, 8);
+		addInfo(COBALT_DUNGEON_CHEST, WorldGenCobaltDungeon.chestContent, 8, 8);
 	}
 
 	static void addDungeonLoot(ChestGenHooksCobalt dungeon, ItemStack item, int weight, int min, int max) {

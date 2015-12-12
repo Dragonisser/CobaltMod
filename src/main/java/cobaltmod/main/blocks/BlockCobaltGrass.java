@@ -23,6 +23,7 @@ import cobaltmod.entity.EntityCobaltGuardian;
 import cobaltmod.entity.EntityCobaltGuardianMinion;
 import cobaltmod.entity.EntityCobaltZombie;
 import cobaltmod.handler.AchievementHandler;
+import cobaltmod.main.api.CMApiReplace;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -70,30 +71,26 @@ public class BlockCobaltGrass extends Block implements IGrowable {
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		if (!par1World.isRemote) {
 			if ((par1World.getBlockLightValue(par2, par3 + 1, par4) < 4 && par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2)
-					|| par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.water
-					|| par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.lava) {
+					|| (par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.water || par1World.getBlock(par2, par3 + 1, par4).getMaterial() == Material.lava)) {
 				par1World.setBlock(par2, par3, par4, CMContent.cobaltdirt);
 			} else if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 5) {
 				for (int l = 0; l < 5; ++l) {
-					// int i1 = par2 + par5Random.nextInt(3) - 1;
-					// int j1 = par3 + par5Random.nextInt(5) - 3;
-					// int k1 = par4 + par5Random.nextInt(3) - 1;
+					int i1 = par2 + par5Random.nextInt(3) - 1;
+					int j1 = par3 + par5Random.nextInt(5) - 3;
+					int k1 = par4 + par5Random.nextInt(3) - 1;
 
-					// Block spreadable = par1World.getBlock(i1, j1, k1);
-					// Block below = par1World.getBlock(i1, par3 - 1, i1);
+					Block spreadable = par1World.getBlock(i1, j1, k1);
+					Block below = par1World.getBlock(i1, par3 - 1, k1);
+					Block nextto = par1World.getBlock(i1, par3, k1);
 
-					// if (CMApiReplace.map.containsKey(spreadable) &&
-					// par1World.getBlockLightValue(i1, par3 + 1, k1) >= 4
-					// && par1World.getBlockLightOpacity(i1, par3 + 1, k1) <= 2)
-					// {
-					//
-					// par1World.setBlock(i1, j1, k1,
-					// CMApiReplace.map.get(spreadable));
-					//
-					// } else if (below == CMContent.cobaltgrass) {
-					// par1World.setBlock(par2, par3, par4,
-					// CMContent.cobaltdirt);
-					// }
+					if (CMApiReplace.map.containsKey(spreadable) && par1World.getBlockLightValue(i1, par3 + 1, k1) >= 4
+							&& par1World.getBlockLightOpacity(i1, par3 + 1, k1) <= 2) {
+
+						par1World.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
+
+					} else if ((below == CMContent.cobaltgrass || nextto == CMContent.cobaltgrass) && par1World.getBlockLightValue(par2, par3 + 1, par4) < 4 && par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2) {
+						par1World.setBlock(par2, par3, par4, CMContent.cobaltdirt);
+					}
 				}
 			}
 		}
@@ -195,16 +192,8 @@ public class BlockCobaltGrass extends Block implements IGrowable {
 						if (CMContent.bluetallgrass.canBlockStay(p_149853_1_, i1, j1, k1)) {
 							p_149853_1_.setBlock(i1, j1, k1, CMContent.bluetallgrass, 1, 3);
 						}
-					} else {
-						// p_149853_1_.getBiomeGenForCoords(i1,
-						// k1).plantFlower(p_149853_1_, p_149853_2_, i1, j1,
-						// k1);
-						// new
-						// WorldGenFlowers(CMContent.bellflower).generate(p_149853_1_,
-						// p_149853_2_, i1, j1, k1); //Bellflower
 					}
 				}
-
 				++l;
 				break;
 			}
