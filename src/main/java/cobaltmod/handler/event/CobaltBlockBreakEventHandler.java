@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -22,5 +23,8 @@ public class CobaltBlockBreakEventHandler {
 				}
 			}
 		}
+	}
+	@SubscribeEvent
+	public void CobaltPlayerHarvessdasdtEvent(BiomeEvent event) {
 	}
 }
