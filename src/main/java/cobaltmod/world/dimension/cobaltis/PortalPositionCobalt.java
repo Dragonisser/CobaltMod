@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension.overworld;
+package cobaltmod.world.dimension.cobaltis;
 
 import net.minecraft.util.ChunkCoordinates;
 

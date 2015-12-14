@@ -22,7 +22,7 @@ import cobaltmod.entity.EntityBluePortalFX;
 import cobaltmod.handler.AchievementHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
-import cobaltmod.world.dimension.overworld.TeleporterCobalt;
+import cobaltmod.world.dimension.cobaltis.TeleporterCobalt;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

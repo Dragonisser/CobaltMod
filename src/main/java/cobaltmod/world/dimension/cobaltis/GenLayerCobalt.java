@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension.overworld;
+package cobaltmod.world.dimension.cobaltis;
 
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
@@ -21,9 +21,6 @@ public static GenLayer[] makeTheWorld(long seed) {
 	biomes = new GenLayerZoom(1003L, biomes);
 	biomes = new GenLayerZoom(1004L, biomes);
 	biomes = new GenLayerZoom(1005L, biomes);
-
-
-
 
 	GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, biomes);
 

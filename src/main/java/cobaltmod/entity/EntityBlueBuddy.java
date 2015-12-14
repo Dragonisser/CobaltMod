@@ -50,7 +50,6 @@ public class EntityBlueBuddy extends EntityAnimal {
 		super.onLivingUpdate();
 
 		if (this.isPanic() && this.ticksExisted % 20 == 0) {
-			System.out.println(fleeTime);
 			fleeTime--;
 			if (this.fleeTime <= 0) {
 				this.ispanic = false;

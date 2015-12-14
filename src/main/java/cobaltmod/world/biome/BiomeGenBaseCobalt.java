@@ -14,8 +14,8 @@ public class BiomeGenBaseCobalt extends BiomeGenBase {
 	public static BiomeGenBase biomehills;
 	public static BiomeGenBase biomecaves;
 
-	public BiomeGenBaseCobalt(int biomeId) {
-		super(biomeId);
+	public BiomeGenBaseCobalt(int biomeId, boolean register) {
+		super(biomeId, true);
 		this.rainfall = 0.6F;
 	}
 
@@ -48,14 +48,12 @@ public class BiomeGenBaseCobalt extends BiomeGenBase {
 	}
 
 	public static void init() {
-		biomemountains = (new BiomeGenCobaltMountains(CMMain.biomemountainsid)).setBiomeName("Highlands");
-		biomeplains = (new BiomeGenCobaltPlains(CMMain.biomeplainsid)).setBiomeName("Cobex Forest");
-		biomeswamp = (new BiomeGenCobaltSwamp(CMMain.biomeswampid)).setBiomeName("Deep Swamp");
-		biometall = (new BiomeGenCobaltTall(CMMain.biometallid)).setBiomeName("Tall Forest");
-		biomehills = (new BiomeGenCobaltHills(CMMain.biomehillsid)).setBiomeName("Blue Mountains");
-		biomecaves = (new BiomeGenCobaltCaves(CMMain.biomecavesid)).setBiomeName("Cobalt Caves");
-
-		registerWithBiomeDictionary();
+		biomemountains = new BiomeGenCobaltMountains(CMMain.biomemountainsid, false).setBiomeName("Higherlands");
+		biomeplains = new BiomeGenCobaltPlains(CMMain.biomeplainsid, false).setBiomeName("Cobex Forest");
+		biomeswamp = new BiomeGenCobaltSwamp(CMMain.biomeswampid, false).setBiomeName("Deep Swamp");
+		biometall = new BiomeGenCobaltTall(CMMain.biometallid, false).setBiomeName("Tall Forest");
+		biomehills = new BiomeGenCobaltHills(CMMain.biomehillsid, false).setBiomeName("Blue Mountains");
+		biomecaves = new BiomeGenCobaltCaves(CMMain.biomecavesid, false).setBiomeName("Cobalt Caves");
 	}
 
 	public static void registerWithBiomeDictionary() {

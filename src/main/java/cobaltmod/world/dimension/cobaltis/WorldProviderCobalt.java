@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension.overworld;
+package cobaltmod.world.dimension.cobaltis;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -30,7 +30,7 @@ public class WorldProviderCobalt extends WorldProvider {
 	}
 
 	public boolean isSurfaceWorld() {
-		return true;
+		return false;
 	}
 
 	public boolean canRespawnHere() {
@@ -96,7 +96,7 @@ public class WorldProviderCobalt extends WorldProvider {
 	}
 
 	public String getWelcomeMessage() {
-		
+
 		return "Entering the Cobaltis";
 	}
 }

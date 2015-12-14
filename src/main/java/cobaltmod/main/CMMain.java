@@ -61,7 +61,7 @@ import cobaltmod.main.potions.CMPotions;
 import cobaltmod.network.CobaltPacketDispatcher;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
 import cobaltmod.world.dimension.caves.WorldProviderCobaltCaves;
-import cobaltmod.world.dimension.overworld.WorldProviderCobalt;
+import cobaltmod.world.dimension.cobaltis.WorldProviderCobalt;
 import cobaltmod.world.gen.WorldGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -122,6 +122,12 @@ public class CMMain {
 	public static boolean devenabled;
 	public static boolean templeenabled;
 
+	private static String GENERATION = "Generation";
+	@SuppressWarnings("unused")
+	private static String BLOCKS = "Blocks";
+	@SuppressWarnings("unused")
+	private static String ITEMS = "Items";
+
 	@SidedProxy(clientSide = "cobaltmod.main.ClientProxyCobalt", serverSide = "cobaltmod.main.CommonProxyCobalt")
 	public static CommonProxyCobalt proxy;
 	public static final String MODID = "mod_cobalt";
@@ -147,9 +153,8 @@ public class CMMain {
 
 		config.load();
 
-		cobaltdimension = config.get("Dimension", "Cobalt", 20).getInt();
 		config.get("Dimension", "Cobalt", 20).comment = "Which ID the Dimension has. Change it if you have problems with other Mods.";
-
+		cobaltdimension = config.get("Dimension", "Cobalt", 20).getInt();
 		cobaltdimension1 = config.get("Dimension", "Deep Caves", 21).getInt();
 
 		portaltemple = config.get("PortalTemple", "Spawnrate", 30).getInt();
@@ -167,21 +172,26 @@ public class CMMain {
 		devenabled = config.get("Development", "Dev Enabled", false).getBoolean(false);
 		config.get("Development", "Dev Enabled", false).comment = "To enable the Development Items/Blocks.";
 
-		templeenabled = config.get("Structures", "Temple Enabled", true).getBoolean(true);
-		config.get("Structures", "Temple Enabled", true).comment = "To enable the spawning of the Temple.";
+		config.setCategoryComment(
+				GENERATION,
+				"Change the Ids here if it conflicts with others. If you have large stone biomes, like highlands without grass and such, there is a possible id conflict with other mods.");
 
-		biomehillsid = config.get("BiomeId", "Blue Hills", 50).getInt();
-		biomeplainsid = config.get("BiomeId", "Cobalt Plains", 51).getInt();
-		biomeswampid = config.get("BiomeId", "Deep Swamp", 52).getInt();
-		biometallid = config.get("BiomeId", "Tall Forest", 53).getInt();
-		biometallid = config.get("BiomeId", "Highlands", 54).getInt();
-		biomecavesid = config.get("BiomeId", "Cobalt Caves", 55).getInt();
+		biomehillsid = config.get(GENERATION, "Blue Hills", 180).getInt();
+		biomeplainsid = config.get(GENERATION, "Cobalt Plains", 181).getInt();
+		biomeswampid = config.get(GENERATION, "Deep Swamp", 182).getInt();
+		biometallid = config.get(GENERATION, "Tall Forest", 183).getInt();
+		biometallid = config.get(GENERATION, "Highlands", 184).getInt();
+		biomecavesid = config.get(GENERATION, "Cobalt Caves", 185).getInt();
 
-		config.get("BiomeId", "Blue Hills", 50).comment = "Change the BiomesIds here if it conflicts with others.";
+		templeenabled = config.get(GENERATION, "Temple Enabled", true).getBoolean(true);
+		config.get(GENERATION, "Temple Enabled", true).comment = "To enable the spawning of the Temple.";
+
+		// config.get("BiomeId", "Blue Hills", biomehillsid)
+		// config.get("BiomeId", "Blue Hills", biomehillsid)
 
 		config.save();
 
-		BiomeGenBaseCobalt.init();
+		
 
 		this.potionArray();
 
@@ -223,6 +233,8 @@ public class CMMain {
 
 		// Achievement
 		AchievementHandler.init();
+		
+		BiomeGenBaseCobalt.init();
 
 		// Dimension
 		DimensionManager.registerProviderType(cobaltdimension, WorldProviderCobalt.class, true);

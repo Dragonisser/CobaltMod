@@ -1,4 +1,4 @@
-package cobaltmod.world.dimension.overworld;
+package cobaltmod.world.dimension.cobaltis;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
