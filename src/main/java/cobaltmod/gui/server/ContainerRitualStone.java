@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.server;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -9,6 +9,7 @@ import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
+import cobaltmod.gui.recipes.RitualStoneRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

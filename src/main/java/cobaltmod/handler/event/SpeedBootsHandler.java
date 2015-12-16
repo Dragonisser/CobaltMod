@@ -12,7 +12,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class CobaltPlayerTickEventHandler {
+public class SpeedBootsHandler {
 
 	private static final UUID cobaltspeedBootsMoveBonusUUID = UUID.fromString("36A0FC05-50EB-460B-8961-615633A6D813");
 
@@ -26,14 +26,6 @@ public class CobaltPlayerTickEventHandler {
 
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
-
-		// ItemStack item = event.player.getHeldItem() ;
-		// if (item != null && item.getItem() instanceof ItemTool) {
-		// System.out.println(item.getItem().getHarvestLevel(item, "pickaxe"));
-		// System.out.println(item.getItem().getHarvestLevel(item, "shovel"));
-		// System.out.println(item.getItem().getHarvestLevel(item, "axe"));
-		// }
-
 		if (event.side.isClient() && event.phase.equals(TickEvent.Phase.START)) {
 			IAttributeInstance movement = event.player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 			ItemStack[] is = event.player.inventory.armorInventory;

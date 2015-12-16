@@ -16,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.RenderRitualStone;
@@ -163,7 +164,7 @@ public class BlockRitualStone extends BlockContainer {
 			TileEntityRitualStone tileentityfurnace = (TileEntityRitualStone) par1World.getTileEntity(par2, par3, par4);
 
 			if (tileentityfurnace != null) {
-				par5EntityPlayer.openGui(CMMain.instance, 3, par1World, par2, par3, par4);
+				par5EntityPlayer.openGui(CMMain.instance, GuiHandler.RitualStoneId, par1World, par2, par3, par4);
 			}
 
 			return true;

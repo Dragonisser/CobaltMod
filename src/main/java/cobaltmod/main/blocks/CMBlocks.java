@@ -148,6 +148,8 @@ public class CMBlocks {
 		CMContent.bluishmushroom = new BlockBluishMushroom().setBlockName("bluishmushroom").setBlockTextureName(CMMain.MODID + ":bluishmushroom")
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.cobaltdeadbush = new BlockCobaltDeadBush().setBlockName("deadbush").setBlockTextureName(CMMain.MODID + ":deadbush");
+		
+		CMContent.neutralizer = new BlockNeutralizer().setBlockName("neutralizer").setBlockTextureName(CMMain.MODID + ":neutralizer");
 
 		register();
 		setFireInfo();
@@ -228,6 +230,7 @@ public class CMBlocks {
 		GameRegistry.registerBlock(CMContent.bluishmushroom, "bluishmushroom");
 
 		addBlock(CMContent.cobaltdeadbush);
+		addBlock(CMContent.neutralizer);
 	}
 
 	private static void addBlock(Block block) {

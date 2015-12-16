@@ -3,6 +3,7 @@ package cobaltmod.main.blocks;
 import java.util.Random;
 
 import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;
@@ -142,7 +143,7 @@ public class BlockCorruptedStoneFurnace extends BlockContainer {
 		} else if (!par5EntityPlayer.isSneaking()) {
 			TileEntityCorruptedStoneFurnace var10 = (TileEntityCorruptedStoneFurnace) par1World.getTileEntity(par2, par3, par4);
 			if (var10 != null) {
-				par5EntityPlayer.openGui(CMMain.instance, 6, par1World, par2, par3, par4);
+				par5EntityPlayer.openGui(CMMain.instance, GuiHandler.CorruptedStoneFurnaceId, par1World, par2, par3, par4);
 			}
 			return true;
 		} else {

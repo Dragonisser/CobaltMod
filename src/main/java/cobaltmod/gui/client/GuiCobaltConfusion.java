@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

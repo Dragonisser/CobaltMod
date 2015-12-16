@@ -1,15 +1,17 @@
-package cobaltmod.gui;
+package cobaltmod.gui.server;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import cobaltmod.gui.inventory.InventoryBackpack;
+import cobaltmod.gui.slot.SlotBackpack;
 import cobaltmod.main.api.CMContent;
 
 public class ContainerBackpack extends Container {
 
-	final InventoryBackpack inventory;
+	public final InventoryBackpack inventory;
 	
 	private static final int INV_START = InventoryBackpack.INV_SIZE, INV_END = INV_START+26,
 			HOTBAR_START = INV_END+1, HOTBAR_END = HOTBAR_START+8;

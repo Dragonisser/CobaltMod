@@ -18,6 +18,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;
@@ -166,7 +167,7 @@ public class BlockCobaltFurnace extends BlockContainer {
 			TileEntityCobaltFurnace var10 = (TileEntityCobaltFurnace) par1World
 					.getTileEntity(par2, par3, par4);
 			if (var10 != null) {
-				par5EntityPlayer.openGui(CMMain.instance, 2, par1World,
+				par5EntityPlayer.openGui(CMMain.instance, GuiHandler.CobaltFurnaceId, par1World,
 						par2, par3, par4);
 			}
 			return true;

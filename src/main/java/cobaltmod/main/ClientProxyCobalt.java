@@ -25,7 +25,7 @@ import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
 import cobaltmod.entity.tileentity.TileEntityPodium;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
-import cobaltmod.gui.GuiCobaltConfusion;
+import cobaltmod.gui.client.GuiCobaltConfusion;
 import cobaltmod.handler.event.CobaltKeyHandler;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.RenderAltar;

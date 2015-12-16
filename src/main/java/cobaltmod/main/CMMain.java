@@ -47,7 +47,8 @@ import cobaltmod.handler.RecipeHandler;
 import cobaltmod.handler.event.BucketHandler;
 import cobaltmod.handler.event.CobaltBlockBreakEventHandler;
 import cobaltmod.handler.event.CobaltLivingUpdateEventHandler;
-import cobaltmod.handler.event.CobaltPlayerTickEventHandler;
+import cobaltmod.handler.event.HurtBlocksHandler;
+import cobaltmod.handler.event.SpeedBootsHandler;
 import cobaltmod.handler.event.CraftingHandler;
 import cobaltmod.handler.event.PickupHandler;
 import cobaltmod.handler.event.SmeltingHandler;
@@ -79,7 +80,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = CMMain.MODID, name = "CobaltMod", version = CMMain.VERSION)
+@Mod(modid = CMMain.MODID, name = "CobaltMod", version = CMMain.VERSION, dependencies = "after:BiomesOPlenty")
 public class CMMain {
 
 	// CreativeTab
@@ -96,7 +97,7 @@ public class CMMain {
 	// Dimension
 	public static int cobaltdimension;
 	public static int cobaltdimension1;
-	public static int portaltemple;
+	public static double portaltemple;
 
 	// WindAxe
 	public static int forwardspeed;
@@ -157,8 +158,8 @@ public class CMMain {
 		cobaltdimension = config.get("Dimension", "Cobalt", 20).getInt();
 		cobaltdimension1 = config.get("Dimension", "Deep Caves", 21).getInt();
 
-		portaltemple = config.get("PortalTemple", "Spawnrate", 30).getInt();
-		config.get("PortalTemple", "Spawnrate", 30).comment = "The Spawnrate of the CobaltTemple. Change it to a low number if you want to find it easier.";
+		portaltemple = config.get("PortalTemple", "Spawnrate", 25).getDouble();
+		config.get("PortalTemple", "Spawnrate", 25).comment = "The Spawnrate of the CobaltTemple defined in percent. 100% means always when it cans, 0% means never.";
 
 		forwardspeed = config.get("WindAxe", "ForWardSpeed", 1).getInt();
 		config.get("WindAxe", "ForWardSpeed", 1).comment = "The forwardspeed the windaxe provides if you rightclick.";
@@ -219,10 +220,11 @@ public class CMMain {
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		FMLCommonHandler.instance().bus().register(new PickupHandler());
 		FMLCommonHandler.instance().bus().register(new SmeltingHandler());
-		FMLCommonHandler.instance().bus().register(new CobaltPlayerTickEventHandler());
+		FMLCommonHandler.instance().bus().register(new SpeedBootsHandler());
 
 		MinecraftForge.EVENT_BUS.register(new CobaltBlockBreakEventHandler());
 		MinecraftForge.EVENT_BUS.register(new CobaltLivingUpdateEventHandler());
+		MinecraftForge.EVENT_BUS.register(new HurtBlocksHandler());
 
 		// Fluid
 		BucketHandler.INSTANCE.buckets.put(CMContent.darkwater, CMContent.bucket_darkwater);

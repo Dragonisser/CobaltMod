@@ -1,10 +1,13 @@
-package cobaltmod.gui;
+package cobaltmod.gui.client;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import cobaltmod.gui.inventory.InventoryBackpack;
+import cobaltmod.gui.server.ContainerBackpack;
 
 public class GuiBackpack extends GuiContainer
 {

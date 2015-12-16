@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.slot;
 
 import cobaltmod.main.items.ItemBlueBackpack;
 import net.minecraft.inventory.IInventory;

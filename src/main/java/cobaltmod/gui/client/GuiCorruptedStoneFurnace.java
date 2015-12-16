@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.client;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -8,6 +8,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
+import cobaltmod.gui.server.ContainerCorruptedStoneFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

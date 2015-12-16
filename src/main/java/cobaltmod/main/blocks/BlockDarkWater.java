@@ -168,7 +168,6 @@ public class BlockDarkWater extends BlockFluidClassic {
 				flowIntoBlock(world, x, y, z + 1, flowMeta);
 		}
 		if (!world.isRemote) {
-			// System.out.println("Is not remote");
 
 			for (int l = 0; l < 4; ++l) {
 
@@ -181,6 +180,9 @@ public class BlockDarkWater extends BlockFluidClassic {
 					if(rand.nextInt(4) != 0) return;
 					if (world.getChunkFromBlockCoords(x, z).isChunkLoaded) {
 						if (world.getBlock(j1, y - 1, k1) != CMContent.cobaltgrass) {
+							
+							if(world.getBlockLightValue(j1, y + 1, k1) < 4 && world.getBlockLightOpacity(j1, y + 1, k1) > 2) return;
+							
 							if (CMApiReplace.map.containsKey(spreadable)) {
 								world.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
 							}

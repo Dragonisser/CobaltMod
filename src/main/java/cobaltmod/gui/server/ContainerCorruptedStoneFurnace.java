@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.server;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

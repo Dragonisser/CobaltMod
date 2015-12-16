@@ -16,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cobaltmod.entity.tileentity.TileEntityAltar;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.renderer.RenderAltar;
@@ -66,64 +67,6 @@ public class BlockAltarOfAssociation extends BlockContainer {
 	public int getRenderType() {
 		return RenderAltar.altarRenderId;
 	}
-
-
-	/*public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
-
-		boolean flag1 = par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 2 || par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 3;
-		boolean flag2 = par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 5 || par1IBlockAccess.getBlockMetadata(par2, par3, par4) == 4;
-
-		float f = 0.875F;
-		float f3 = 0.9375F;
-		float f4 = 0.125F;
-		float f6 = 0.0625F;
-		
-		
-		if (flag1) 
-		{
-			f = 0.125F;
-			f3 = 0.0625F;
-			f4 = 0.875F;
-			f6 = 0.9375F;
-			this.setBlockBounds(f, 0.0F, f3, f4, 0.8125F, f6);
-		} 
-		else if (flag2)
-		{
-			f = 0.875F;
-			f3 = 0.9375F;
-			f4 = 0.125F;
-			f6 = 0.0625F;
-			this.setBlockBounds(f, 0.0F, f3, f4, 0.8125F, f6);
-		}	
-	}*/
-	
-	/*public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) 
-	{
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
-	}*/
-
-	/**
-	 * Set the bounds of the bed block.
-	 */
-	/*private void setBounds() {
-		this.setBlockBounds(0.125F, 0.0F, 0.0625F, 0.875F, 0.8125F, 0.9375F);
-	}*/
-
-	/**
-	 * Adds all intersecting collision boxes to a list. (Be sure to only add
-	 * boxes to the list if they intersect the mask.) Parameters: World, X, Y,
-	 * Z, mask, list, colliding entity
-	 */
-	/*
-	 * public void addCollisionBoxesToList(World par1World, int par2, int par3,
-	 * int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity
-	 * par7Entity) { this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.6F, 0.875F, 0.6F);
-	 * super.addCollisionBoxesToList(par1World, par2, par3, par4,
-	 * par5AxisAlignedBB, par6List, par7Entity);
-	 * this.setBlockBoundsForItemRender();
-	 * super.addCollisionBoxesToList(par1World, par2, par3, par4,
-	 * par5AxisAlignedBB, par6List, par7Entity); }
-	 */
 
 	/**
 	 * Called whenever the block is added into the world. Args: world, x, y, z
@@ -224,9 +167,8 @@ public class BlockAltarOfAssociation extends BlockContainer {
 			TileEntityAltar tileentityfurnace = (TileEntityAltar) par1World.getTileEntity(par2, par3, par4);
 
 			if (tileentityfurnace != null) {
-				par5EntityPlayer.openGui(CMMain.instance, 0, par1World, par2, par3, par4);
+				par5EntityPlayer.openGui(CMMain.instance, GuiHandler.AltarId, par1World, par2, par3, par4);
 			}
-
 			return true;
 		}
 	}
@@ -289,7 +231,6 @@ public class BlockAltarOfAssociation extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
-		// TODO Auto-generated method stub
 		return new TileEntityAltar();
 	}
 	

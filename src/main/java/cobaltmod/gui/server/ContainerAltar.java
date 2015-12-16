@@ -1,6 +1,7 @@
-package cobaltmod.gui;
+package cobaltmod.gui.server;
 
 import cobaltmod.entity.tileentity.TileEntityAltar;
+import cobaltmod.gui.slot.SlotAltar;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

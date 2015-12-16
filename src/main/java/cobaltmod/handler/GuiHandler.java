@@ -10,41 +10,51 @@ import cobaltmod.entity.tileentity.TileEntityAltar;
 import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
 import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
-import cobaltmod.gui.ContainerAltar;
-import cobaltmod.gui.ContainerBackpack;
-import cobaltmod.gui.ContainerBlueWoodWorkBench;
-import cobaltmod.gui.ContainerCobaltFurnace;
-import cobaltmod.gui.ContainerCorruptedStoneFurnace;
-import cobaltmod.gui.ContainerRitualStone;
-import cobaltmod.gui.GuiAltar;
-import cobaltmod.gui.GuiBackpack;
-import cobaltmod.gui.GuiBlueWoodWorkBench;
-import cobaltmod.gui.GuiCobaltFurnace;
-import cobaltmod.gui.GuiCorruptedStoneFurnace;
-import cobaltmod.gui.GuiRecipeBook;
-import cobaltmod.gui.GuiRitualStone;
-import cobaltmod.gui.InventoryBackpack;
+import cobaltmod.gui.client.GuiAltar;
+import cobaltmod.gui.client.GuiBackpack;
+import cobaltmod.gui.client.GuiBlueWoodWorkBench;
+import cobaltmod.gui.client.GuiCobaltFurnace;
+import cobaltmod.gui.client.GuiCorruptedStoneFurnace;
+import cobaltmod.gui.client.GuiRecipeBook;
+import cobaltmod.gui.client.GuiRitualStone;
+import cobaltmod.gui.inventory.InventoryBackpack;
+import cobaltmod.gui.server.ContainerAltar;
+import cobaltmod.gui.server.ContainerBackpack;
+import cobaltmod.gui.server.ContainerBlueWoodWorkBench;
+import cobaltmod.gui.server.ContainerCobaltFurnace;
+import cobaltmod.gui.server.ContainerCorruptedStoneFurnace;
+import cobaltmod.gui.server.ContainerRitualStone;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
+	public static int AltarId = 0;
+	public static int RecipeBookId = 1;
+	public static int CobaltFurnaceId = 2;
+	public static int RitualStoneId = 3;
+	public static int BlueWoodWorkBenchId = 4;
+	public static int BackpackId = 5;
+	public static int CorruptedStoneFurnaceId = 6;
+	public static int NeutralizerId = 7;
+	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
 
 		switch (ID) {
 		case 0:
-			return ID == 0 ? new ContainerAltar(player.inventory, (TileEntityAltar) tileEntity) : null;
+			return ID == AltarId ? new ContainerAltar(player.inventory, (TileEntityAltar) tileEntity) : null;
+		case 1:
+			return null;
 		case 2:
-			return ID == 2 ? new ContainerCobaltFurnace(player.inventory, (TileEntityCobaltFurnace) tileEntity) : null;
+			return ID == CobaltFurnaceId ? new ContainerCobaltFurnace(player.inventory, (TileEntityCobaltFurnace) tileEntity) : null;
 		case 3:
-			return ID == 3 ? new ContainerRitualStone(player.inventory, (TileEntityRitualStone) tileEntity) : null;
+			return ID == RitualStoneId ? new ContainerRitualStone(player.inventory, (TileEntityRitualStone) tileEntity) : null;
 		case 4:
-			return ID == 4 && world.getBlock(x, y, z) == CMContent.cobexworkbench ? new ContainerBlueWoodWorkBench(player.inventory, world, x, y, z) : null;
+			return ID == BlueWoodWorkBenchId && world.getBlock(x, y, z) == CMContent.cobexworkbench ? new ContainerBlueWoodWorkBench(player.inventory, world, x, y, z) : null;
 		case 5:
-
 			ItemStack[] armor = player.inventory.armorInventory;
 
 			if (player != null) {
@@ -57,15 +67,14 @@ public class GuiHandler implements IGuiHandler {
 						ItemArmor itemA = (ItemArmor) item;
 						if (itemA.getArmorMaterial() == CMMain.BackpackArmor || item == CMContent.cobaltplatebackpack) {
 
-							return ID == 5 ? new ContainerBackpack(player, player.inventory, new InventoryBackpack(armor[2])) : null;
+							return ID == BackpackId ? new ContainerBackpack(player, player.inventory, new InventoryBackpack(armor[2])) : null;
 						}
 					}
 				}
 			}
 		case 6:
-			return ID == 6 ? new ContainerCorruptedStoneFurnace(player.inventory, (TileEntityCorruptedStoneFurnace) tileEntity) : null;
+			return ID == CorruptedStoneFurnaceId ? new ContainerCorruptedStoneFurnace(player.inventory, (TileEntityCorruptedStoneFurnace) tileEntity) : null;
 		}
-
 		return null;
 	}
 
@@ -75,17 +84,16 @@ public class GuiHandler implements IGuiHandler {
 
 		switch (ID) {
 		case 0:
-			return ID == 0 ? new GuiAltar(player.inventory, (TileEntityAltar) tileEntity) : null;
+			return ID == AltarId ? new GuiAltar(player.inventory, (TileEntityAltar) tileEntity) : null;
 		case 1:
-			return ID == 1 ? new GuiRecipeBook(player) : null;
+			return ID == RecipeBookId ? new GuiRecipeBook(player) : null;
 		case 2:
-			return ID == 2 ? new GuiCobaltFurnace(player.inventory, (TileEntityCobaltFurnace) tileEntity) : null;
+			return ID == CobaltFurnaceId ? new GuiCobaltFurnace(player.inventory, (TileEntityCobaltFurnace) tileEntity) : null;
 		case 3:
-			return ID == 3 ? new GuiRitualStone(player.inventory, (TileEntityRitualStone) tileEntity) : null;
+			return ID == RitualStoneId ? new GuiRitualStone(player.inventory, (TileEntityRitualStone) tileEntity) : null;
 		case 4:
-			return ID == 4 && world.getBlock(x, y, z) == CMContent.cobexworkbench ? new GuiBlueWoodWorkBench(player.inventory, world, x, y, z) : null;
+			return ID == BlueWoodWorkBenchId && world.getBlock(x, y, z) == CMContent.cobexworkbench ? new GuiBlueWoodWorkBench(player.inventory, world, x, y, z) : null;
 		case 5:
-
 			ItemStack[] armor = player.inventory.armorInventory;
 
 			if (player != null) {
@@ -102,16 +110,22 @@ public class GuiHandler implements IGuiHandler {
 						ItemArmor itemA = (ItemArmor) item;
 						if (itemA.getArmorMaterial() == CMMain.BackpackArmor || item == CMContent.cobaltplatebackpack) {
 
-							return ID == 5 ? new GuiBackpack((ContainerBackpack) new ContainerBackpack(player, player.inventory,
+							return ID == BackpackId ? new GuiBackpack((ContainerBackpack) new ContainerBackpack(player, player.inventory,
 									new InventoryBackpack(armor[2]))) : null;
 						}
 					}
 				}
 			}
 		case 6:
-			return ID == 6 ? new GuiCorruptedStoneFurnace(player.inventory, (TileEntityCorruptedStoneFurnace) tileEntity) : null;
+			return ID == CorruptedStoneFurnaceId ? new GuiCorruptedStoneFurnace(player.inventory, (TileEntityCorruptedStoneFurnace) tileEntity) : null;
 		}
 		return null;
 	}
+//	
+//	
+//	private boolean checkForBackpack(EntityPlayer player) {
+//		return false;
+//		
+//	}
 
 }

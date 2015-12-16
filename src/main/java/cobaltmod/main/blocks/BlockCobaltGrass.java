@@ -7,22 +7,11 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cobaltmod.entity.EntityBlueBuddy;
-import cobaltmod.entity.EntityBlueSlime;
 import cobaltmod.entity.EntityCobaltAuraFX;
-import cobaltmod.entity.EntityCobaltGuardian;
-import cobaltmod.entity.EntityCobaltGuardianMinion;
-import cobaltmod.entity.EntityCobaltZombie;
-import cobaltmod.handler.AchievementHandler;
 import cobaltmod.main.api.CMApiReplace;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -80,15 +69,16 @@ public class BlockCobaltGrass extends Block implements IGrowable {
 					int k1 = par4 + par5Random.nextInt(3) - 1;
 
 					Block spreadable = par1World.getBlock(i1, j1, k1);
-					Block below = par1World.getBlock(i1, par3 - 1, k1);
+					Block below = par1World.getBlock(par2, par3 - 1, par2);
 					Block nextto = par1World.getBlock(i1, par3, k1);
 
-					if (CMApiReplace.map.containsKey(spreadable) && par1World.getBlockLightValue(i1, par3 + 1, k1) >= 4
-							&& par1World.getBlockLightOpacity(i1, par3 + 1, k1) <= 2) {
+					if (CMApiReplace.map.containsKey(spreadable) && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4
+							&& par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2) {
 
 						par1World.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
 
-					} else if ((below == CMContent.cobaltgrass || nextto == CMContent.cobaltgrass) && par1World.getBlockLightValue(par2, par3 + 1, par4) < 4 && par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2) {
+					} else if ((below == CMContent.cobaltgrass || nextto == CMContent.cobaltgrass) && par1World.getBlockLightValue(par2, par3 + 1, par4) < 4
+							&& par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2) {
 						par1World.setBlock(par2, par3, par4, CMContent.cobaltdirt);
 					}
 				}
@@ -102,51 +92,6 @@ public class BlockCobaltGrass extends Block implements IGrowable {
 
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity) {
 		super.onEntityWalking(par1World, par2, par3, par4, par5Entity);
-		if (par5Entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) par5Entity;
-
-			player.addStat(AchievementHandler.cobaltachiev, 1);
-
-			ItemStack[] armor = player.inventory.armorInventory;
-
-			if (armor[0] != null) {
-				Item item = armor[0].getItem();
-				if (item instanceof ItemArmor) {
-					ItemArmor itemA = (ItemArmor) item;
-					if (itemA.getArmorMaterial() == ItemArmor.ArmorMaterial.CLOTH) {
-						par5Entity.attackEntityFrom(DamageSource.magic, 2F);
-						return;
-					}
-					if (itemA.getArmorMaterial() == CMContent.CobaltOreArmor || itemA.getArmorMaterial() == ItemArmor.ArmorMaterial.IRON
-							|| itemA.getArmorMaterial() == ItemArmor.ArmorMaterial.DIAMOND) {
-						return;
-					}
-				}
-			}
-		}
-		if (par5Entity instanceof EntityLivingBase) {
-			EntityLivingBase elb = (EntityLivingBase) par5Entity;
-
-			if (elb.isPotionActive(CMContent.potion_cobalt_resistance)) {
-				return;
-			}
-		}
-		if (par5Entity instanceof EntityCobaltZombie) {
-			return;
-		}
-		if (par5Entity instanceof EntityCobaltGuardian) {
-			return;
-		}
-		if (par5Entity instanceof EntityBlueBuddy) {
-			return;
-		}
-		if (par5Entity instanceof EntityCobaltGuardianMinion) {
-			return;
-		}
-		if (par5Entity instanceof EntityBlueSlime) {
-			return;
-		}
-		par5Entity.attackEntityFrom(DamageSource.magic, 4F);
 
 	}
 

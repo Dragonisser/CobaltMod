@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.slot;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;

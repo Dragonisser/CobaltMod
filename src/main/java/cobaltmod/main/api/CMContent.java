@@ -83,6 +83,7 @@ public enum CMContent {
 	public static Block corruptedstonefurnace_idle;
 	public static Block lockedcobaltchest;
 	public static Block cobaltchest;
+	public static Block neutralizer;
 	
 	public static Block hardendcorruptedstone;
 	public static Block portalframecaves;

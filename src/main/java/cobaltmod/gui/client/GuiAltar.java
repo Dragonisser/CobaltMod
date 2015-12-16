@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,6 +10,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import cobaltmod.entity.tileentity.TileEntityAltar;
+import cobaltmod.gui.server.ContainerAltar;
 
 @SideOnly(Side.CLIENT)
 public class GuiAltar extends GuiContainer

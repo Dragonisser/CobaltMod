@@ -1,6 +1,6 @@
 package cobaltmod.entity.tileentity;
 
-import cobaltmod.gui.AltarRecipes;
+import cobaltmod.gui.recipes.AltarRecipes;
 import cobaltmod.main.blocks.BlockPodium;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;

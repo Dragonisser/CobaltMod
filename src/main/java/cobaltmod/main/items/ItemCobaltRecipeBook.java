@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cobaltmod.handler.AchievementHandler;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,7 +21,7 @@ public class ItemCobaltRecipeBook extends Item
     
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-    	par3EntityPlayer.openGui(CMMain.instance, 1, par2World, par3EntityPlayer.chunkCoordX, par3EntityPlayer.chunkCoordY, par3EntityPlayer.chunkCoordZ);
+    	par3EntityPlayer.openGui(CMMain.instance, GuiHandler.RecipeBookId, par2World, par3EntityPlayer.chunkCoordX, par3EntityPlayer.chunkCoordY, par3EntityPlayer.chunkCoordZ);
     	par3EntityPlayer.addStat(AchievementHandler.cobaltachiev10, 1);
 		return par1ItemStack;
     	

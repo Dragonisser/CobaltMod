@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import cobaltmod.handler.GuiHandler;
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
 import cpw.mods.fml.relauncher.Side;
@@ -49,7 +50,7 @@ public class BlockCobexWorkBench extends Block
 
     	if (!par5EntityPlayer.isSneaking()) 
 		{
-			par5EntityPlayer.openGui(CMMain.instance, 4, par1World, par2, par3, par4);
+			par5EntityPlayer.openGui(CMMain.instance, GuiHandler.BlueWoodWorkBenchId, par1World, par2, par3, par4);
 			return true;
 		} 
 		else 

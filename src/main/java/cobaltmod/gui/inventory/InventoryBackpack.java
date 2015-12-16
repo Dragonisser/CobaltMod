@@ -1,4 +1,4 @@
-package cobaltmod.gui;
+package cobaltmod.gui.inventory;
 
 import java.util.UUID;
 

@@ -31,7 +31,7 @@ public class WorldGenerator implements IWorldGenerator {
 		int RandPosX = x + random.nextInt(16);
 		int RandPosZ = z + random.nextInt(16);
 		int j1 = world.getHeightValue(RandPosX, RandPosZ);
-		
+
 		if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltMountains
 				|| (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltPlains || (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltSwamp))
 				|| !(world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltTall)) {
@@ -62,10 +62,10 @@ public class WorldGenerator implements IWorldGenerator {
 				}
 			}
 		}
-		
 
 		if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenBaseCobalt) {
-			for (int k = 0; k < 2; k++) // How often it tries to spawn in a chunk
+			for (int k = 0; k < 2; k++) // How often it tries to spawn in a
+										// chunk
 			{
 				int cobaltoreXCoord = x + random.nextInt(16);
 				int cobaltoreYCoord = random.nextInt(25); // Ebene 0 - 25
@@ -73,7 +73,8 @@ public class WorldGenerator implements IWorldGenerator {
 
 				new WorldGenMineableCobalt(CMContent.cobaltore, 4).generate(world, random, cobaltoreXCoord, cobaltoreYCoord, cobaltoreZCoord); // Erz
 			}
-			for (int i = 0; i < 3; i++) // How often it tries to spawn in a chunk
+			for (int i = 0; i < 3; i++) // How often it tries to spawn in a
+										// chunk
 			{
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltMountains || (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltPlains)) {
 					new WorldGenCobaltTree(true, 4 + random.nextInt(3), 0, 0, false).generate(world, random, RandPosX, j1, RandPosZ); // Baum
@@ -83,14 +84,16 @@ public class WorldGenerator implements IWorldGenerator {
 				}
 
 			}
-			for (int i = 0; i < 7; i++) // How often it tries to spawn in a	chunk
+			for (int i = 0; i < 7; i++) // How often it tries to spawn in a
+										// chunk
 			{
 				if (world.getBiomeGenForCoords(x, z) instanceof BiomeGenCobaltTall) {
 					new WorldGenBigCobaltTree(true, 11 + random.nextInt(3), 0, 0, false).generate(world, random, RandPosX, j1, RandPosZ); // Baum
 				}
 
 			}
-			for (int k = 0; k < 5; k++) // How often it tries to spawn in a chunk
+			for (int k = 0; k < 5; k++) // How often it tries to spawn in a
+										// chunk
 			{
 				int cobaltoreXCoord = x + random.nextInt(16);
 				int cobaltoreYCoord = random.nextInt(120);
@@ -98,7 +101,8 @@ public class WorldGenerator implements IWorldGenerator {
 
 				new WorldGenMineableCobalt(CMContent.cobaltstone, 14).generate(world, random, cobaltoreXCoord, cobaltoreYCoord, cobaltoreZCoord); // Stein
 			}
-			for (int k = 0; k < 5; k++) // How often it tries to spawn in a chunk
+			for (int k = 0; k < 5; k++) // How often it tries to spawn in a
+										// chunk
 			{
 				int cobaltoreXCoord = x + random.nextInt(16);
 				int cobaltoreYCoord = random.nextInt(180);
@@ -114,8 +118,15 @@ public class WorldGenerator implements IWorldGenerator {
 		int RandPosX = x + rand.nextInt(16);
 		int RandPosZ = z + rand.nextInt(16);
 		int j1 = world.getHeightValue(RandPosX, RandPosZ);
-		int randomnes = rand.nextInt(CMMain.portaltemple) + 2;
-		if (randomnes == 2 && CMMain.templeenabled) {
+
+		double d = Math.random();
+		double chance = CMMain.portaltemple / 100;
+		if (chance > 1.0 || chance <= 0.0) {
+			return;
+		}
+
+		if (d <= chance && CMMain.templeenabled) {
+			System.out.println(d + " " + chance);
 			new WorldGenCobaltPortalTemple().generate(world, rand, RandPosX, j1 - 1, RandPosZ);
 		}
 	}

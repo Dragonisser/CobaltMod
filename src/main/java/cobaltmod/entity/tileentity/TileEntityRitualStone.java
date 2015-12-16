@@ -15,7 +15,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import cobaltmod.gui.RitualStoneRecipes;
+import cobaltmod.gui.recipes.RitualStoneRecipes;
 import cobaltmod.main.blocks.BlockRitualStone;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;

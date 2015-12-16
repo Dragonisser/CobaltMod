@@ -1,5 +1,6 @@
-package cobaltmod.gui;
+package cobaltmod.gui.server;
 
+import cobaltmod.gui.slot.SlotBlueWoodWorkBenchCrafting;
 import cobaltmod.main.api.CMContent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
