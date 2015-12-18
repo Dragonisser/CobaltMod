@@ -126,7 +126,7 @@ public class WorldGenerator implements IWorldGenerator {
 		}
 
 		if (d <= chance && CMMain.templeenabled) {
-			System.out.println(d + " " + chance);
+			//System.out.println(d + " " + chance);
 			new WorldGenCobaltPortalTemple().generate(world, rand, RandPosX, j1 - 1, RandPosZ);
 		}
 	}

@@ -181,7 +181,7 @@ public class CMMain {
 		biomeplainsid = config.get(GENERATION, "Cobalt Plains", 181).getInt();
 		biomeswampid = config.get(GENERATION, "Deep Swamp", 182).getInt();
 		biometallid = config.get(GENERATION, "Tall Forest", 183).getInt();
-		biometallid = config.get(GENERATION, "Highlands", 184).getInt();
+		biomemountainsid = config.get(GENERATION, "Highlands", 184).getInt();
 		biomecavesid = config.get(GENERATION, "Cobalt Caves", 185).getInt();
 
 		templeenabled = config.get(GENERATION, "Temple Enabled", true).getBoolean(true);

@@ -80,7 +80,7 @@ public class HurtBlocksHandler {
 			return;
 		}
 		counter++;
-		if(counter >= 20) {
+		if(counter >= 30) {
 			event.entity.attackEntityFrom(DamageSource.magic, 4F);
 			counter = 0;
 			return;

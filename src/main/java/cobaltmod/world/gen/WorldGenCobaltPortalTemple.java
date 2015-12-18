@@ -57,8 +57,8 @@ public class WorldGenCobaltPortalTemple extends WorldGenerator
 		}
 		
 		
-		System.out.println("[CobaltMod] Spawning Temple at x:" + i + " y:" + j + " z:" + k);
-		System.out.println(world.getBiomeGenForCoords(i, k));
+		//System.out.println("[CobaltMod] Spawning Temple at x:" + i + " y:" + j + " z:" + k);
+		//System.out.println(world.getBiomeGenForCoords(i, k));
 		world.setBlock(i + 0, j + 0, k + 0, Blocks.grass);
 		world.setBlock(i + 0, j + 0, k + 1, CMContent.cobaltbrick);
 		world.setBlock(i + 0, j + 0, k + 2, CMContent.cobaltbrick);

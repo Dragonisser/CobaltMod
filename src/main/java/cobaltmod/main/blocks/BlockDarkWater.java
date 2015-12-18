@@ -179,14 +179,19 @@ public class BlockDarkWater extends BlockFluidClassic {
 				if (world.getChunkProvider().chunkExists(i1 / 16, k1 / 16)) {
 					if(rand.nextInt(4) != 0) return;
 					if (world.getChunkFromBlockCoords(x, z).isChunkLoaded) {
-						if (world.getBlock(j1, y - 1, k1) != CMContent.cobaltgrass) {
-							
-							if(world.getBlockLightValue(j1, y + 1, k1) < 4 && world.getBlockLightOpacity(j1, y + 1, k1) > 2) return;
-							
-							if (CMApiReplace.map.containsKey(spreadable)) {
-								world.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
-							}
+						
+						
+						if (world.getBlock(i1, j1 - 1, k1) == CMContent.cobaltgrass) {
+							return;
 						}
+							
+						if (world.getBlockLightValue(i1, y + 1, k1) < 4 && world.getBlockLightOpacity(i1, y + 1, k1) > 2) {
+							return;
+						}
+						
+						if (CMApiReplace.map.containsKey(spreadable)) {
+							world.setBlock(i1, j1, k1, CMApiReplace.map.get(spreadable));
+						}					
 					}
 				}
 			}
