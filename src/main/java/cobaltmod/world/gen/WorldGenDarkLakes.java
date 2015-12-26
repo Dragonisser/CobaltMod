@@ -10,7 +10,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class WorldGenDarkLakes extends WorldGenerator
+public class WorldGenDarkLakes extends WorldGeneratorDim
 {
     private Block field_150556_a;
 

@@ -18,7 +18,7 @@ public class CobaltBlockBreakEventHandler {
 				Entity entity = new EntityItem(event.world, event.x, event.y, event.z, new ItemStack(CMContent.stonefragment, 1));
 
 				double d = Math.random();
-				if (d < 0.1) {
+				if (d < 0.01) {
 					event.world.spawnEntityInWorld(entity);
 				}
 			}

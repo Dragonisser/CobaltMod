@@ -79,6 +79,10 @@ public class ItemCobaltSlab extends ItemBlock
             int j1 = i1 & 7;
             boolean flag = (i1 & 8) != 0;
 
+            if (40 % 20) {
+            	
+            }
+            
             if ((par7 == 1 && !flag || par7 == 0 && flag) && block == this.field_150949_c && j1 == par1ItemStack.getItemDamage())
             {
                 if (par3World.checkNoEntityCollision(this.field_150947_d.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlock(par4, par5, par6, this.field_150947_d, j1, 3))

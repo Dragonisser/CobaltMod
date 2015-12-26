@@ -1,4 +1,4 @@
-package cobaltmod.world.gen;
+package cobaltmod.world.gen.worldgen;
 
 import java.util.Random;
 
@@ -6,8 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cobaltmod.main.api.CMContent;
+import cobaltmod.world.gen.WorldGeneratorDim;
 
-public class WorldGenMineableCobalt extends WorldGenerator
+public class WorldGenMineableCobalt extends WorldGeneratorDim
 {
     private Block field_150519_a;
     /** The number of blocks to generate. */

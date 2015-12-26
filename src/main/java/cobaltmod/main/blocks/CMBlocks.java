@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 
 import cobaltmod.main.CMMain;
 import cobaltmod.main.api.CMContent;
+import cobaltmod.main.blocks.itemblock.ItemBlockMetaBlock;
 import cobaltmod.main.items.ItemCarthunSlab;
 import cobaltmod.main.items.ItemCobaltSlab;
 import cobaltmod.main.items.ItemCobexSlab;
@@ -145,7 +146,7 @@ public class CMBlocks {
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.portalcaves = (BlockPortal) new BlockPortalCaves().setBlockName("portalcaves").setBlockTextureName(CMMain.MODID + ":portalcaves")
 				.setHardness(-1.0F).setCreativeTab(CMMain.cobalttabblocks);
-		CMContent.bluishmushroom = new BlockBluishMushroom().setBlockName("bluishmushroom").setBlockTextureName(CMMain.MODID + ":bluishmushroom")
+		CMContent.bluishmushroom = new BlockBluishMushroom().setBlockName("bluishmushroom").setBlockTextureName(CMMain.MODID + ":mushroom")
 				.setCreativeTab(CMMain.cobalttabblocks);
 		CMContent.cobaltdeadbush = new BlockCobaltDeadBush().setBlockName("deadbush").setBlockTextureName(CMMain.MODID + ":deadbush");
 		
@@ -227,14 +228,21 @@ public class CMBlocks {
 		GameRegistry.registerBlock(CMContent.hardendcorruptedstone, "hardendcorruptedstone");
 		GameRegistry.registerBlock(CMContent.portalframecaves, "portalframecaves");
 		GameRegistry.registerBlock(CMContent.portalcaves, "portalcaves");
-		GameRegistry.registerBlock(CMContent.bluishmushroom, "bluishmushroom");
 
 		addBlock(CMContent.cobaltdeadbush);
 		addBlock(CMContent.neutralizer);
+		
+		addMetaBlock(CMContent.bluishmushroom);
 	}
 
 	private static void addBlock(Block block) {
 		GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
+		block.setCreativeTab(CMMain.cobalttabblocks);
+		LogManager.getLogger("COBALTMOD").info(block + " " + block.getUnlocalizedName().substring(5));
+	}
+	
+	private static void addMetaBlock(Block block) {
+		GameRegistry.registerBlock(block, ItemBlockMetaBlock.class, block.getUnlocalizedName().substring(5));
 		block.setCreativeTab(CMMain.cobalttabblocks);
 		LogManager.getLogger("COBALTMOD").info(block + " " + block.getUnlocalizedName().substring(5));
 	}

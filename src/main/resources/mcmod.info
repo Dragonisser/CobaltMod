@@ -3,13 +3,13 @@
   "modid": "mod_cobalt",
   "name": "CobaltMod",
   "description": "Adds the ore Cobalt and many other things.",
-  "version": "1.5.7",
+  "version": "1.5.7.1",
   "mcversion": "1.7.10",
   "url": "http://minecraft.de/showthread.php?106890",
   "updateUrl": "",
   "authorList": ["Dragonisser"],
   "credits": "",
-  "logoFile": "assets/cm.png",
+  "logoFile": "assets/mod_cobalt/cm.png",
   "screenshots": [],
   "dependencies": []
 }

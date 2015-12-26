@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class WorldGenCobaltDungeonTree extends WorldGenerator
+public class WorldGenCobaltDungeonTree extends WorldGeneratorDim
 {
 	protected Block[] GetValidSpawnBlocks() {
 		return new Block[] 

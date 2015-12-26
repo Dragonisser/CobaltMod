@@ -40,6 +40,7 @@ import cobaltmod.entity.tileentity.TileEntityCobaltFurnace;
 import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.entity.tileentity.TileEntityCorruptedStoneFurnace;
 import cobaltmod.entity.tileentity.TileEntityLockedCobaltChest;
+import cobaltmod.entity.tileentity.TileEntityPodium;
 import cobaltmod.entity.tileentity.TileEntityRitualStone;
 import cobaltmod.handler.AchievementHandler;
 import cobaltmod.handler.GuiHandler;
@@ -63,7 +64,7 @@ import cobaltmod.network.CobaltPacketDispatcher;
 import cobaltmod.world.biome.BiomeGenBaseCobalt;
 import cobaltmod.world.dimension.caves.WorldProviderCobaltCaves;
 import cobaltmod.world.dimension.cobaltis.WorldProviderCobalt;
-import cobaltmod.world.gen.WorldGenerator;
+import cobaltmod.world.gen.WorldGeneratorDim;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -122,6 +123,8 @@ public class CMMain {
 	// Dev
 	public static boolean devenabled;
 	public static boolean templeenabled;
+	
+	private static String CMLOGGER = "COBALTMOD";
 
 	private static String GENERATION = "Generation";
 	@SuppressWarnings("unused")
@@ -132,7 +135,7 @@ public class CMMain {
 	@SidedProxy(clientSide = "cobaltmod.main.ClientProxyCobalt", serverSide = "cobaltmod.main.CommonProxyCobalt")
 	public static CommonProxyCobalt proxy;
 	public static final String MODID = "mod_cobalt";
-	public static final String VERSION = "1.5.7";
+	public static final String VERSION = "1.5.7.1";
 
 	@Instance("mod_cobalt")
 	public static CMMain instance;
@@ -192,9 +195,7 @@ public class CMMain {
 
 		config.save();
 
-		
-
-		this.potionArray();
+		potionArray();
 
 		// Fluid
 		CMContent.darkwater_fluid = new BlockFluidDarkWater("darkwater_fluid");
@@ -307,11 +308,16 @@ public class CMMain {
 
 		// CobaltChest
 		GameRegistry.registerTileEntity(TileEntityLockedCobaltChest.class, "tileentitylockedcobaltchest");
+		
+		// Podium
+		GameRegistry.registerTileEntity(TileEntityPodium.class, "tileentitypodium");
 
 		// Worldgenerator Registration
-		GameRegistry.registerWorldGenerator(new WorldGenerator(), 0);
+		GameRegistry.registerWorldGenerator(new WorldGeneratorDim(), 0);
 
+		
 		/**
+		 * Use with caution
 		 * Reason because it lags so intense. Not so good .-.
 		 */
 
@@ -350,14 +356,14 @@ public class CMMain {
 	public void modsLoaded(FMLPostInitializationEvent evt) {
 		// Ic²
 		if (Loader.isModLoaded("IC2")) {
-			LogManager.getLogger("COBALTMOD").info("Found IC2. Enabling support");
+			LogManager.getLogger(CMLOGGER).info("Found IC2. Enabling support");
 			try {
 				IC2SupportHandler.isIC2Installed();
 			} catch (Exception e) {
 			}
 		}
 		if (Loader.isModLoaded("NotEnoughItems")) {
-			LogManager.getLogger("COBALTMOD").info("Found NEI. Enabling support");
+			LogManager.getLogger(CMLOGGER).info("Found NEI. Enabling support");
 			try {
 				// NEISupportHandler.isNEIInstalled();
 			} catch (Exception e) {

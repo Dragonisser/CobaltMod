@@ -190,7 +190,7 @@ public class BlockCobaltPortal extends BlockPortal {
 			if (thePlayer.timeUntilPortal == 0) {
 				if (thePlayer.getEntityData().getInteger("TpTime") > 0) {
 					thePlayer.getEntityData().setInteger("TpTime", thePlayer.getEntityData().getInteger("TpTime") - 1);
-					System.out.println(thePlayer.getDisplayName() + ": " + thePlayer.getEntityData().getInteger("TpTime"));
+					//System.out.println(thePlayer.getDisplayName() + ": " + thePlayer.getEntityData().getInteger("TpTime"));
 				} else {
 					thePlayer.getEntityData().setInteger("TpTime", getCoolDown());
 				}

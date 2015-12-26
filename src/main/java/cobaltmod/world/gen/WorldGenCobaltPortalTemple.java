@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.world.World;
 
-public class WorldGenCobaltPortalTemple extends WorldGenerator
+public class WorldGenCobaltPortalTemple extends WorldGeneratorDim
 {
 	protected Block[] GetValidSpawnBlocks() {
 		return new Block[] 

@@ -12,9 +12,10 @@ import cobaltmod.world.biome.BiomeGenCobaltMountains;
 import cobaltmod.world.biome.BiomeGenCobaltPlains;
 import cobaltmod.world.biome.BiomeGenCobaltSwamp;
 import cobaltmod.world.biome.BiomeGenCobaltTall;
+import cobaltmod.world.gen.worldgen.WorldGenMineableCobalt;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class WorldGenerator implements IWorldGenerator {
+public class WorldGeneratorDim implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -126,7 +127,6 @@ public class WorldGenerator implements IWorldGenerator {
 		}
 
 		if (d <= chance && CMMain.templeenabled) {
-			//System.out.println(d + " " + chance);
 			new WorldGenCobaltPortalTemple().generate(world, rand, RandPosX, j1 - 1, RandPosZ);
 		}
 	}

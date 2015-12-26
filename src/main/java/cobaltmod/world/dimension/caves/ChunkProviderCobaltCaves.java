@@ -31,6 +31,7 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import cobaltmod.main.api.CMContent;
 import cobaltmod.world.gen.WorldGenCobaltDungeon;
+import cobaltmod.world.gen.worldgen.WorldGenFlowersMeta;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class ChunkProviderCobaltCaves implements IChunkProvider {
@@ -492,7 +493,7 @@ public class ChunkProviderCobaltCaves implements IChunkProvider {
 			j1 = k + this.hellRNG.nextInt(16) + 8;
 			k1 = this.hellRNG.nextInt(128);
 			l1 = l + this.hellRNG.nextInt(16) + 8;
-			(new WorldGenFlowers(CMContent.bluishmushroom)).generate(this.worldObj, this.hellRNG, j1, k1, l1);
+			(new WorldGenFlowersMeta(CMContent.bluishmushroom, this.hellRNG.nextInt(2))).generate(this.worldObj, this.hellRNG, j1, k1, l1);
 		}
 
 		if (doGen && this.hellRNG.nextInt(1) == 0) {
