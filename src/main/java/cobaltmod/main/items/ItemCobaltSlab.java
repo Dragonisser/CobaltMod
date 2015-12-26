@@ -78,10 +78,6 @@ public class ItemCobaltSlab extends ItemBlock
             int i1 = par3World.getBlockMetadata(par4, par5, par6);
             int j1 = i1 & 7;
             boolean flag = (i1 & 8) != 0;
-
-            if (40 % 20) {
-            	
-            }
             
             if ((par7 == 1 && !flag || par7 == 0 && flag) && block == this.field_150949_c && j1 == par1ItemStack.getItemDamage())
             {
