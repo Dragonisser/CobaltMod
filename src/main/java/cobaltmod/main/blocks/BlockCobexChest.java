@@ -2,7 +2,6 @@ package cobaltmod.main.blocks;
 
 import static net.minecraftforge.common.util.ForgeDirection.DOWN;
 
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -24,7 +23,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cobaltmod.entity.EntityCobaltGuardianMinion;
 import cobaltmod.entity.tileentity.TileEntityCobexChest;
 import cobaltmod.renderer.RenderCobexChest;
 import cpw.mods.fml.relauncher.Side;
@@ -364,39 +362,11 @@ public class BlockCobexChest extends BlockContainer {
 		} else {
 
 			IInventory iinventory = this.getInventory(par1World, par2, par3, par4);
-
-			par5EntityPlayer.displayGUIChest(iinventory);
-
-			Calendar calendar = Calendar.getInstance();
-
-			if ((calendar.get(2) + 1 == 10 && calendar.get(5) == 31) || (calendar.get(2) + 1 == 11 && calendar.get(5) == 1)) {
-
-				double d = Math.random();
-
-				if (d < 0.7) {
-					if (iinventory != null) {
-						par5EntityPlayer.displayGUIChest(iinventory);
-						if (this.random.nextInt(5) == 0) {
-							EntityCobaltGuardianMinion entityCGM = new EntityCobaltGuardianMinion(par1World);
-							entityCGM.setLocationAndAngles(par2 + this.random.nextDouble(), par3 + 0.5D, par4 + this.random.nextDouble(),
-									par5EntityPlayer.rotationYaw, par5EntityPlayer.rotationPitch);
-							par1World.spawnEntityInWorld(entityCGM);
-
-							EntityCobaltGuardianMinion entityCGM1 = new EntityCobaltGuardianMinion(par1World);
-							entityCGM1.setLocationAndAngles(par2 + this.random.nextDouble(), par3 + 0.5D, par4 + this.random.nextDouble(),
-									par5EntityPlayer.rotationYaw, par5EntityPlayer.rotationPitch);
-							par1World.spawnEntityInWorld(entityCGM1);
-						}
-					}
-				}
-
-			} else {
-				if (iinventory != null) {
-					par5EntityPlayer.displayGUIChest(iinventory);
-				}
+			if (iinventory != null) {
+				par5EntityPlayer.displayGUIChest(iinventory);
 			}
 
-			return true;
+			return false;
 		}
 	}
 

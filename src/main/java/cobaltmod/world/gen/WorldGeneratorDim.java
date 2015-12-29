@@ -23,7 +23,7 @@ public class WorldGeneratorDim implements IWorldGenerator {
 		if (world.provider.dimensionId == CMMain.cobaltdimension || world.provider.dimensionId == CMMain.cobaltdimension1) {
 			generateCobaltis(world, random, chunkX * 16, chunkZ * 16);
 		}
-		if (world.provider.isSurfaceWorld()) {
+		if (world.provider.dimensionId == 0) {
 			generateSurface(world, random, chunkX * 16, chunkZ * 16);
 		}
 	}
