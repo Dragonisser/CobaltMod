@@ -21,7 +21,7 @@ public class RecipeHandler
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobaltapple, 1), new Object [] {"###", "#%#", "###", Character.valueOf('#'), CMContent.blueessence, Character.valueOf('%'), Items.apple});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexstick, 4), new Object [] {"#", "#", Character.valueOf('#'), CMContent.cobexwood});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexwood, 4), new Object [] {"#", Character.valueOf('#'), CMContent.cobexlog});
-	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobaltbricksingleslab, 3), new Object [] {"###", Character.valueOf('#'), CMContent.cobaltbrick});
+	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobaltbricksingleslab, 6), new Object [] {"###", Character.valueOf('#'), CMContent.cobaltbrick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexbow, 1), new Object [] {" #%", "# %", " #%", Character.valueOf('#'), CMContent.cobexstick, Character.valueOf('%'), Items.string});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexarrow, 5), new Object [] {"%", "#", "$", Character.valueOf('#'), CMContent.cobexstick, Character.valueOf('%'), Items.flint, Character.valueOf('$'), Items.feather});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobaltingot, 1), new Object [] {"###", "###", "###", Character.valueOf('#'), CMContent.cobaltnugget});
@@ -30,9 +30,9 @@ public class RecipeHandler
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexhoe, 1), new Object [] {"## ", " % ", " % ", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexshovel, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
 	    GameRegistry.addRecipe(new ItemStack(CMContent.cobexsword, 1), new Object [] {"#", "#", "%", Character.valueOf('#'), CMContent.cobexwood, Character.valueOf('%'), CMContent.cobexstick});
-	  	GameRegistry.addRecipe(new ItemStack(CMContent.njossstaff, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.njosscrystal, Character.valueOf('%'), CMContent.cobexstick});
+	  	GameRegistry.addRecipe(new ItemStack(CMContent.njossstaff, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.njosscrystal, Character.valueOf('%'), Items.stick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.foenumstaff, 1), new Object [] {"#", "%", "%", Character.valueOf('#'), CMContent.foenumcrystal, Character.valueOf('%'), CMContent.cobexstick});
-	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexsingleslab, 3), new Object [] {"###", Character.valueOf('#'), CMContent.cobexwood});
+	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexsingleslab, 6), new Object [] {"###", Character.valueOf('#'), CMContent.cobexwood});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobaltbrickstair, 4), new Object [] {"#  ", "## ", "###", Character.valueOf('#'), CMContent.cobaltbrick});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobexstair, 4), new Object [] {"#  ", "## ", "###", Character.valueOf('#'), CMContent.cobexwood});
 	  	GameRegistry.addRecipe(new ItemStack(CMContent.cobextorch, 4), new Object [] {"#", "%", Character.valueOf('#'), CMContent.blueslimeball, Character.valueOf('%'), CMContent.cobexstick});
@@ -65,5 +65,6 @@ public class RecipeHandler
 	  	
 	  	GameRegistry.addSmelting(CMContent.cobaltore, new ItemStack(CMContent.cobaltingot, 1), 1.0F);
 	  	GameRegistry.addSmelting(CMContent.carthunore, new ItemStack(CMContent.carthuningot, 1), 1.0F);
+	  	GameRegistry.addSmelting(CMContent.redcabbage, new ItemStack(CMContent.cookedredcabbage), 1.0F);
 	}
 }
