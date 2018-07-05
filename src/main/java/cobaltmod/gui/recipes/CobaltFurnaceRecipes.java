@@ -48,7 +48,8 @@ public class CobaltFurnaceRecipes
      * Returns the smelting result of an item.
      * Deprecated in favor of a metadata sensitive version
      */
-    @Deprecated
+    @SuppressWarnings("unlikely-arg-type")
+	@Deprecated
     public ItemStack getSmeltingResult(int par1)
     {
         return (ItemStack)this.smeltingList.get(Integer.valueOf(par1));
@@ -59,7 +60,8 @@ public class CobaltFurnaceRecipes
         return this.smeltingList;
     }
 
-    @Deprecated //In favor of ItemStack sensitive version
+    @SuppressWarnings("unlikely-arg-type")
+	@Deprecated //In favor of ItemStack sensitive version
     public float getExperience(int par1)
     {
         return this.experienceList.containsKey(Integer.valueOf(par1)) ? ((Float)this.experienceList.get(Integer.valueOf(par1))).floatValue() : 0.0F;
@@ -79,7 +81,7 @@ public class CobaltFurnaceRecipes
      * @param item The Source ItemStack
      * @return The result ItemStack
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unlikely-arg-type" })
 	public ItemStack getSmeltingResult(ItemStack item) 
     {
         if (item == null)
@@ -97,7 +99,8 @@ public class CobaltFurnaceRecipes
     /**
      * Grabs the amount of base experience for this item to give when pulled from the furnace slot.
      */
-    public float getExperience(ItemStack item)
+    @SuppressWarnings("unlikely-arg-type")
+	public float getExperience(ItemStack item)
     {
         if (item == null || item.getItem() == null)
         {

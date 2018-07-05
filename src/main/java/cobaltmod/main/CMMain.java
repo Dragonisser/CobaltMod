@@ -341,7 +341,7 @@ public class CMMain {
 	public static int getUniqueEntityId() {
 		do {
 			startEntityId++;
-		} while (EntityList.getStringFromID(startEntityId) != null);
+		} while ((EntityList.getStringFromID(startEntityId) != null) && (startEntityId < 256));
 		return startEntityId;
 	}
 

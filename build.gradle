@@ -21,8 +21,13 @@ version = "1.7.10-1.5.7.1"
 group= "cobaltmod.main.CMMain" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mod_cobalt"
 
+sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
 minecraft {
-    version = "1.7.10-10.13.4.1492-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse"
 }
 
